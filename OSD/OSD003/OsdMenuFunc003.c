@@ -36,7 +36,7 @@ bit CVideoEnable(void)
         return 1;
     else return 0;
 }
-                                     
+
 //---------------------------------------------------------------------------
 bit CVideoNTSCEnable(void)
 {
@@ -57,9 +57,9 @@ bit CVgaEnable(void)
 
 bit MDisplayRatioEnable(void)
 {
-    if(CCalcRatio() >= 75)      // ÆÁµÄ±ÈÀý 4:3 »ò 16:9
+    if(CCalcRatio() >= 75)      // ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ 4:3 ï¿½ï¿½ 16:9
         return _FAIL;
-    
+
     return _TRUE;
 }
 
@@ -110,7 +110,7 @@ void OSDSlider(unsigned char row, unsigned char col, unsigned char length, unsig
         OutputChar(c);
     }
     OutputChar(0x29);    // Right Border
-    PrintfDec(value);    //ÖµÏÔÊ¾ÔÚÓÒ±ß
+    PrintfDec(value);    //Öµï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ò±ï¿½
     OutputChar(0x2a);
     if (value < 100)
     OutputChar(0x00);
@@ -125,11 +125,11 @@ void DrawMainMenu(void)
     SetOSDDouble(0);
     CCloseAllWindows();
 
-    OSDLine(ROW(0), COL(0),	COL_WIDTH,	0xf0,	BYTE_COLOR);    
+    OSDLine(ROW(0), COL(0),	COL_WIDTH,	0xf0,	BYTE_COLOR);
     COsdFxDrawWindow(XSTART(0), YSTART(0), _MAINMENU_WITDH, _MAINMENU_HEIGHT, tMainWindowStyle);
 
     OSDPosition(_MAINMENU_WITDH,_MAINMENU_HEIGHT,50,90,0x01);
-    
+
 }
 //---------------------------------------------------------------------------
 void DrawContrast(void)
@@ -238,13 +238,13 @@ void DrawFMMenu(void)
 	switch(_GET_FM_STATE())
 	{
 		case _FM_OFF:		pStr = sFM_OFF;			break;
-		case _FM_A1:			pStr = sFM_A1;			break;		
+		case _FM_A1:			pStr = sFM_A1;			break;
 		case _FM_A2:			pStr = sFM_A2;			break;
 		case _FM_A3:			pStr = sFM_A3;			break;
-		case _FM_A4:			pStr = sFM_A4;			break;		
-		case _FM_A5:			pStr = sFM_A5;			break;		
-		case _FM_A6:			pStr = sFM_A6;			break;		
-		case _FM_A7:			pStr = sFM_A7;			break;		
+		case _FM_A4:			pStr = sFM_A4;			break;
+		case _FM_A5:			pStr = sFM_A5;			break;
+		case _FM_A6:			pStr = sFM_A6;			break;
+		case _FM_A7:			pStr = sFM_A7;			break;
 		case _FM_A8:			pStr = sFM_A8;			break;
 		case _FM_B1:			pStr = sFM_B1;			break;
 		case _FM_B2:			pStr = sFM_B2;			break;
@@ -266,10 +266,10 @@ void DrawFMMenu(void)
 		CCenterTextout(pStr, 10, 2);
 	if(_GET_FM_STATE() != _FM_OFF)
 	CCenterTextout(sMhz, 17, 2);
-	
+
 	    Gotoxy(20, 2, BYTE_DISPLAY);
 	    OutputChar(_SEL_SELECT);
-       
+
 }
 //---------------------------------------------------------------------------
 //BYTE ucState : _SEL_CLEAR,_SEL_SELECT
@@ -281,14 +281,14 @@ void DrawMenuSelect(BYTE Item,BYTE ucState)
 	{
 		x = 7;
 	}
-	else 
+	else
 	{
 		x = 17;
 	}
 
 	Gotoxy(x, 2, BYTE_DISPLAY);
 	OutputChar(ucState);
-	
+
 }
 /*/---------------------------------------------------------------------------
 void MenuSourceSlect(BYTE ucState)
@@ -297,7 +297,7 @@ void MenuSourceSlect(BYTE ucState)
 
     if(_GET_INPUT_SOURCE() == _SOURCE_VIDEO_AV)
     {
-		ucSelectItem = 0;	
+		ucSelectItem = 0;
     }
     else
     {
@@ -309,21 +309,21 @@ void MenuSourceSlect(BYTE ucState)
 *///---------------------------------------------------------------------------
 void DrawSource(void)
 {
-	
+
     OSD_TITLE_OUT(sSource);
 	//MenuSourceSlect(_SEL_SELECT);
     ucSourceTemp = stSystemData.InputSource;
-	    Gotoxy(COL(4), ROW(2), BYTE_DISPLAY);
+	    /*Gotoxy(COL(4), ROW(2), BYTE_DISPLAY);
     		Textout(sAV1);
-	    Gotoxy(COL(10), ROW(2), BYTE_DISPLAY);	
+	    Gotoxy(COL(10), ROW(2), BYTE_DISPLAY);
     		Textout(sAV2);
-	    Gotoxy(COL(16), ROW(2), BYTE_DISPLAY);	
-    		Textout(sTV);
-	    Gotoxy(COL(22), ROW(2), BYTE_DISPLAY);	
-    		Textout(sVGA);	
-        Gotoxy(COL(28), ROW(2), BYTE_DISPLAY);  
-            Textout(sHDMI);	
-    if(stSystemData.InputSource == _SOURCE_VIDEO_AV)
+	    Gotoxy(COL(16), ROW(2), BYTE_DISPLAY);
+    		Textout(sTV);*/
+	    Gotoxy(COL(4), ROW(2), BYTE_DISPLAY);
+    		Textout(sVGA);
+        Gotoxy(COL(10), ROW(2), BYTE_DISPLAY);
+            Textout(sHDMI);
+    /*if(stSystemData.InputSource == _SOURCE_VIDEO_AV)
 	{
 		Gotoxy(3,2,BYTE_DISPLAY);
 		OutputChar(0x3B);
@@ -337,17 +337,23 @@ void DrawSource(void)
 	{
 		Gotoxy(15,2,BYTE_DISPLAY);
         OutputChar(0x3B);
-	}
-	else if(stSystemData.InputSource == _SOURCE_VGA)
+	}*/
+	if(stSystemData.InputSource == _SOURCE_VGA)
 	{
-		Gotoxy(21,2,BYTE_DISPLAY);
+		Gotoxy(3,2,BYTE_DISPLAY);
         OutputChar(0x3B);
 	}
     else if(stSystemData.InputSource == _SOURCE_HDMI)
     {
-        Gotoxy(27,2,BYTE_DISPLAY);
+        Gotoxy(9,2,BYTE_DISPLAY);
         OutputChar(0x3B);
     }
+
+    Gotoxy(0,3,BYTE_DISPLAY);
+    OutputDisplaySize();
+
+    Gotoxy(0,4,BYTE_DISPLAY);
+    OutputRefreshRate();
 }
 //---------------------------------------------------------------------------
 void MenuLRSwapSlect(BYTE ucState)
@@ -356,7 +362,7 @@ void MenuLRSwapSlect(BYTE ucState)
 
     if(GET_LR_SWAP())
     {
-		ucSelectItem = 0;	
+		ucSelectItem = 0;
     }
     else
     {
@@ -368,7 +374,7 @@ void MenuLRSwapSlect(BYTE ucState)
 //---------------------------------------------------------------------------
 
 void DrawLRSwap(void)
-{	
+{
     OSD_TITLE_OUT(sLR);
 
     Gotoxy(COL(6), ROW(2), BYTE_DISPLAY);
@@ -386,7 +392,7 @@ void MenuUDSwapSlect(BYTE ucState)
 
     if(GET_UD_SWAP())
     {
-		ucSelectItem = 0;	
+		ucSelectItem = 0;
     }
     else
     {
@@ -398,7 +404,7 @@ void MenuUDSwapSlect(BYTE ucState)
 //---------------------------------------------------------------------------
 
 void DrawUDSwap(void)
-{	
+{
     OSD_TITLE_OUT(sUD);
 
     Gotoxy(COL(6), ROW(2), BYTE_DISPLAY);
@@ -416,7 +422,7 @@ void MenuDisaplayRatioSlect(BYTE ucState)
 
     if(GET_DISPLAYMODE() == _DISPMODE_FULL)
     {
-		ucSelectItem = 0;	
+		ucSelectItem = 0;
     }
     else
     {
@@ -468,7 +474,7 @@ void MAdjustContrast(BYTE ucMode)
     stConBriData.Contrast = ValueInRangeChange(0, 100, stConBriData.Contrast, _NON_LOOP | ucMode);
     CAdjustContrast();
     ucOsdEventMsg = _SAVE_EE_COLORPROC0_MSG;
-	OSD_SLIDER(stConBriData.Contrast);	
+	OSD_SLIDER(stConBriData.Contrast);
 }
 //---------------------------------------------------------------------------
 void MAdjustBrightness(BYTE ucMode)
@@ -494,7 +500,7 @@ void MAdjustHue(BYTE ucMode)
     {
         CAdjustYpbprhue(GET_HUE());
     }
-    ucOsdEventMsg = _SAVE_EE_HUE_SAT_DATA_MSG;   
+    ucOsdEventMsg = _SAVE_EE_HUE_SAT_DATA_MSG;
 
     OSD_SLIDER(GET_HUE());
 
@@ -541,7 +547,7 @@ unsigned char NextTVSystem(unsigned char LR)
 	else
 	{
 		switch(ucTVType)
-		{				
+		{
 			case _TV_PAL_I:			ucTVType = _TV_PAL_M;			break;
 			case _TV_PAL_DK:        ucTVType = _TV_PAL_I;			break;
 			case _TV_PAL_BG:        ucTVType = _TV_PAL_DK;			break;
@@ -632,8 +638,8 @@ void MAdjustLanguage(BYTE ucMode)
     BYTE ucLang = GET_LANGUAGE();
 
     OSDClear(0,2,0,20,0x00,BYTE_DISPLAY);
-	
-    if (!ucMode) //ÖÐÎÄ-> English
+
+    if (!ucMode) //ï¿½ï¿½ï¿½ï¿½-> English
     	{
           ucLang = 0;//GetNextLanguage(ucLang);
 	    Gotoxy(16, 2, BYTE_DISPLAY);
@@ -643,7 +649,7 @@ void MAdjustLanguage(BYTE ucMode)
 	   SET_LANGUAGE(0);
 	   CCenterTextout(sLangName[0],  COL(14), ROW(0));//9, 0);//wtao100413
     	}
-    else   //English ->ÖÐÎÄ
+    else   //English ->ï¿½ï¿½ï¿½ï¿½
     	{
           ucLang = 1;//GetPrevLanguage(ucLang);
 	    Gotoxy(6, 2, BYTE_DISPLAY);
@@ -653,14 +659,14 @@ void MAdjustLanguage(BYTE ucMode)
 	   SET_LANGUAGE(1);
 	   CCenterTextout(sLangName[1],  COL(14), ROW(0));//9, 0);//wtao100413
     	}
-	
-    
+
+
 	//OSDClear(0, 2, 1, 30, 0x00, BYTE_DISPLAY);
 	//OSD_CLEAR_MENU();
 
     //
    // CCenterTextout(sLanguage[GET_LANGUAGE()], 14, 2);
-		
+
     ucOsdEventMsg = _SAVE_EE_OSDUSERDATA_MSG;
 
 }
@@ -684,15 +690,15 @@ void MAdjustSource(BYTE ucMode)
 	{
         OSDClear(2, 1, 21 , 1, 0x00, BYTE_DISPLAY);
 	}
-	
+
     if (ucMode)
     {
     	if(ucSourceTemp == _SOURCE_VIDEO_AV)
-			ucSourceTemp = _SOURCE_VIDEO_SV;					
-	else if(ucSourceTemp == _SOURCE_VIDEO_SV)			
+			ucSourceTemp = _SOURCE_VIDEO_SV;
+	else if(ucSourceTemp == _SOURCE_VIDEO_SV)
     		ucSourceTemp = _SOURCE_VIDEO_TV;
     else if(ucSourceTemp == _SOURCE_VIDEO_TV)
-    		ucSourceTemp = _SOURCE_VGA;	
+    		ucSourceTemp = _SOURCE_VGA;
 	else if(ucSourceTemp == _SOURCE_VGA)
     		ucSourceTemp = _SOURCE_HDMI;
     else if(ucSourceTemp == _SOURCE_HDMI)
@@ -703,12 +709,12 @@ void MAdjustSource(BYTE ucMode)
     else
     {
     	if(ucSourceTemp == _SOURCE_VIDEO_AV)
-			ucSourceTemp = _SOURCE_VGA;  
-	else if(ucSourceTemp == _SOURCE_VGA)	
+			ucSourceTemp = _SOURCE_VGA;
+	else if(ucSourceTemp == _SOURCE_VGA)
     		ucSourceTemp = _SOURCE_VIDEO_TV;
-    else if(ucSourceTemp == _SOURCE_VIDEO_TV)		
-			ucSourceTemp = _SOURCE_VIDEO_SV;   
-	else if(ucSourceTemp == _SOURCE_VIDEO_SV)		
+    else if(ucSourceTemp == _SOURCE_VIDEO_TV)
+			ucSourceTemp = _SOURCE_VIDEO_SV;
+	else if(ucSourceTemp == _SOURCE_VIDEO_SV)
     		ucSourceTemp = _SOURCE_VIDEO_AV;
     	else
     		return;
@@ -756,7 +762,7 @@ void MAdjustLRSwap(BYTE ucMode)
 	MenuLRSwapSlect(_SEL_CLEAR);
 
 	PanelLRSwap();
-	
+
 	MenuLRSwapSlect(_SEL_SELECT);
 }
 //---------------------------------------------------------------------------
@@ -774,18 +780,18 @@ void MAdjustDisplayRatio(BYTE ucMode)
 {
 	ucMode = ucMode;
 	MenuDisaplayRatioSlect(_SEL_CLEAR);
-	
-	ChangeDisplayMode();	
+
+	ChangeDisplayMode();
 }
 //---------------------------------------------------------------------------
 void MAdjustReset(BYTE ucMode)
 {
 	ucMode = ucMode;
-	
+
 	DrawMenuSelect(m_fResetMenuState,_SEL_CLEAR);
 
 	m_fResetMenuState = ~m_fResetMenuState;
-	
+
 	DrawMenuSelect(m_fResetMenuState,_SEL_SELECT);
 
 }
@@ -812,11 +818,11 @@ void MMenuNoneProc(void)
 {
     switch(ucOsdEventMsg)
     {
-    case _OE_ENTER_SUBMENU:     
-		MMenuNoneEnterSubMenu();        
+    case _OE_ENTER_SUBMENU:
+		MMenuNoneEnterSubMenu();
 		ucSourceTemp = stSystemData.InputSource;
 		break;
-#if(_VIDEO_TV_SUPPORT)    
+#if(_VIDEO_TV_SUPPORT)
     case _OE_SC_CH_INC:
     case _OE_SC_CH_DEC:
     	if (_GET_INPUT_SOURCE() != _SOURCE_VIDEO_TV)
@@ -832,7 +838,7 @@ void MMenuNoneProc(void)
         {
             _SET_INPUT_SOURCE(_SOURCE_VGA);
             ChangeSourceReset();
-        } 
+        }
         break;
 #endif
 
@@ -842,7 +848,7 @@ void MMenuNoneProc(void)
         {
             _SET_INPUT_SOURCE(_SOURCE_DVI);
             ChangeSourceReset();
-        } 
+        }
         break;
 #endif
 
@@ -852,7 +858,7 @@ void MMenuNoneProc(void)
         {
             _SET_INPUT_SOURCE(_SOURCE_HDMI);
             ChangeSourceReset();
-        } 
+        }
         break;
 #endif
 
@@ -862,7 +868,7 @@ void MMenuNoneProc(void)
         {
             _SET_INPUT_SOURCE(_SOURCE_VIDEO_SV);
             ChangeSourceReset();
-        } 
+        }
         break;
 #endif
 
@@ -872,7 +878,7 @@ void MMenuNoneProc(void)
         {
             _SET_INPUT_SOURCE(_SOURCE_VIDEO_AV);
             ChangeSourceReset();
-        } 
+        }
         break;
 #endif
 
@@ -882,7 +888,7 @@ void MMenuNoneProc(void)
         {
             _SET_INPUT_SOURCE(_SOURCE_VIDEO_TV);
             ChangeSourceReset();
-        } 
+        }
         break;
 #endif
 
@@ -892,14 +898,14 @@ void MMenuNoneProc(void)
         {
             _SET_INPUT_SOURCE(_SOURCE_YPBPR);
             ChangeSourceReset();
-        } 
+        }
         break;
     case _OE_INPUT_YPBPR1:
         if (_GET_INPUT_SOURCE() != _SOURCE_YPBPR1)
         {
             _SET_INPUT_SOURCE(_SOURCE_YPBPR1);
             ChangeSourceReset();
-        } 
+        }
         break;
 
 
@@ -911,7 +917,7 @@ void MMenuNoneProc(void)
 	case _OE_GOTO_MENU_SATURATION:		GotoSaturationMenu();			break;
 	case _OE_GOTO_MENU_BRIGHTNESS:		GotoBrightnessMenu();			break;
 	case _OE_SC_TIMER_CHANGE:				SetSleepTimer();				       break;
-       
+
 
 #if(_VIDEO_TV_SUPPORT)
        case _OE_SC_INPUT_NUM0:
@@ -928,15 +934,15 @@ void MMenuNoneProc(void)
                                                                              EnterSCInputNum();
                                                                              MScInputChNumProc();
         break;
-        
+
        case _OE_SC_INPUT_CH:       			       EnterSCInputNum();              break;
-       
+
        case _OE_SC_RETURN:
        	COsdDispOsdTimerEvent();
 	       pData[0]        = stTvInfo.CurChn;
               stTvInfo.CurChn = ucPrevChannel;
               ucPrevChannel   = pData[0];
-        
+
               CMuteOn();
               CModeResetTVMode();
               CTimerDelayXms(200);
@@ -947,29 +953,29 @@ void MMenuNoneProc(void)
       case _OE_SC_AUTO_SEARCH:
        	DrawMainMenu();
        	DrawAutoSearch();
-       	COsdFxEnableOsd();	    
+       	COsdFxEnableOsd();
     	       CTvAutoSearch();
     	break;
-#endif		
-	case _OE_SC_MUTE:          
-		CSetMuteState();                
+#endif
+	case _OE_SC_MUTE:
+		CSetMuteState();
 	break;
-	
-	default: break;	
+
+	default: break;
     }
 }
 //---------------------------------------------------------------------------
-#define _TEST_ADCKEY				0            
+#define _TEST_ADCKEY				0
 
 void MMenuNoneEnterSubMenu(void)
 {
     // Draw osd
     // Insert code to here
-	DrawMainMenu();    
+	DrawMainMenu();
 	DrawContrast();
-	
+
     ucOsdState = _MI_CONTRAST;
-    
+
     COsdFxEnableOsd();
 
     #if(_TEST_ADCKEY)
@@ -994,37 +1000,37 @@ void MMainMenuProc(void)
 {
     switch(ucOsdEventMsg)
     {
-        case _OE_ADJ_INC:           
-			MMainMenuValueAdj(_INC);            
+        case _OE_ADJ_INC:
+			MMainMenuValueAdj(_INC);
 			break;
-        case _OE_ADJ_DEC:           
-			MMainMenuValueAdj(_DEC);            
+        case _OE_ADJ_DEC:
+			MMainMenuValueAdj(_DEC);
 			break;
-        case _OE_MENU_NEXT:         
+        case _OE_MENU_NEXT:
              	       if (ucOsdState == _MI_SOURCE)
                          {
                              if (ucSourceTemp != stSystemData.InputSource)
                              {
                                  stSystemData.InputSource = ucSourceTemp;
-                             
-                             	COsdDispOsdTimerEvent();              
+
+                             	COsdDispOsdTimerEvent();
                                  ucOsdEventMsg = _CHANGE_SOURCE_MSG;
                                  COsdFxDisableOsd();
                                  return;
                              }
                          }
-		       MMainMenuMenuAdj(_NEXT);           
+		       MMainMenuMenuAdj(_NEXT);
 		       break;
-        case _OE_MENU_PREV:         
-			MMainMenuMenuAdj(_PREV);           
+        case _OE_MENU_PREV:
+			MMainMenuMenuAdj(_PREV);
 			break;
-        case _OE_ENTER_SUBMENU:     
+        case _OE_ENTER_SUBMENU:
 			//MMainMenuEnterSubMenu();            //no process
 			break;
-        case _OE_RETURN_UPMENU:     
-			MMainMenuReturnUpMenu();            
+        case _OE_RETURN_UPMENU:
+			MMainMenuReturnUpMenu();
 			break;
-	default: break;		
+	default: break;
     }
 }
 //---------------------------------------------------------------------------
@@ -1039,21 +1045,21 @@ void MMainMenuValueAdj(BYTE ucMode)
         case _MI_HUE:                       MAdjustHue(ucMode);                    break;
         case _MI_SATURATION:          MAdjustSaturation(ucMode);         break;
         case _MI_SYSTEM:                  MAdjustSystem(ucMode);		    break;
-        case _MI_AUTOSEARCH:         MAdjustAutoSearch(ucMode);        break;        
+        case _MI_AUTOSEARCH:         MAdjustAutoSearch(ucMode);        break;
         case _MI_MANUALSEARCH:     MAdjustManualSearch(ucMode);    break;
         case _MI_TUNING:                  MAdjustTuning(ucMode);               break;
         case _MI_CHANNEL:                MAdjustChannel(ucMode);             break;
         case _MI_VOLUME:                  MAdjustVolume(ucMode);             break;
         case _MI_ATUOADJ:                AutoAdjustLeftRight(ucMode);      break;
-        case _MI_LANGUAGE:              MAdjustLanguage(ucMode);         break;        
+        case _MI_LANGUAGE:              MAdjustLanguage(ucMode);         break;
         case _MI_SOURCE:                 MAdjustSource(ucMode);              break;
 	 case _MI_FM_SEND:	            MAdjustFM(ucMode);			   break;
         case _MI_LR_SWAP:                MAdjustLRSwap(ucMode);            break;
         case _MI_UD_SWAP:               MAdjustUDSwap(ucMode);            break;
         case _MI_DISPLAY_RATIO:      MAdjustDisplayRatio(ucMode);     break;
         case _MI_RESET:                    MAdjustReset(ucMode);                break;
-	default: break;		
-    }   
+	default: break;
+    }
 }
 //---------------------------------------------------------------------------
 void MMainMenuMenuAdj(BYTE ucMode)
@@ -1064,7 +1070,7 @@ void MMainMenuMenuAdj(BYTE ucMode)
         return;
 
 	if(ucOsdState == _MI_RESET)
-	{        
+	{
 		if(m_fResetMenuState == 1)
 		{
 			MReset();
@@ -1074,7 +1080,7 @@ void MMainMenuMenuAdj(BYTE ucMode)
     // Insert code to here
 	OSD_CLEAR_MENU();
 
-	
+
     // 2. Change ucOsdState
     ucOsdState = ucNewItem;
 
@@ -1086,20 +1092,20 @@ void MMainMenuMenuAdj(BYTE ucMode)
         case _MI_BRIGHTNESS:            DrawBrightness();                 	break;
         case _MI_HUE:                         DrawHue();                         	break;
         case _MI_SATURATION:            DrawSaturation();                  	break;
-        case _MI_FM_SEND:	              DrawFMMenu();                  	break;        
+        case _MI_FM_SEND:	              DrawFMMenu();                  	break;
         case _MI_SYSTEM:         		DrawSystem();		              break;
-        case _MI_AUTOSEARCH:            DrawAutoSearch();      	       break;        
+        case _MI_AUTOSEARCH:            DrawAutoSearch();      	       break;
         case _MI_MANUALSEARCH:          DrawManualSearch();            break;
         case _MI_TUNING:                       DrawTuning();                       break;
         case _MI_CHANNEL:                    DrawChannel();                      break;
         case _MI_VOLUME:                      DrawVolume();                  	break;
         case _MI_ATUOADJ:                    DrawAtuoAdjustMenu();        break;
-        case _MI_LANGUAGE:                 DrawLanguage();                  	break;        
+        case _MI_LANGUAGE:                 DrawLanguage();                  	break;
         case _MI_SOURCE:                     DrawSource();                      	break;
         case _MI_LR_SWAP:                   DrawLRSwap();                      	break;
         case _MI_UD_SWAP:                  DrawUDSwap();                      	break;
         case _MI_DISPLAY_RATIO:         DrawDisplayRatio();                break;
-        case _MI_RESET:                 
+        case _MI_RESET:
         	m_fResetMenuState = 0;
         	DrawReset();
         	break;
@@ -1107,7 +1113,7 @@ void MMainMenuMenuAdj(BYTE ucMode)
         	ucOsdState = _MI_MENU_NONE;
         	COsdTimeOut();
         	break;
-	default: break;		
+	default: break;
     }
 
 
@@ -1121,7 +1127,7 @@ void MMainMenuEnterSubMenu(void)
 
 
     // 2. Change ucOsdState
-    
+
     switch(ucOsdState)
     {
         case _MI_CONTRAST:                                        break;
@@ -1129,19 +1135,19 @@ void MMainMenuEnterSubMenu(void)
         case _MI_HUE:                                                   break;
         case _MI_SATURATION:                                     break;
         case _MI_SYSTEM:         			                  break;
-        case _MI_AUTOSEARCH:                               	    break;        
+        case _MI_AUTOSEARCH:                               	    break;
         case _MI_MANUALSEARCH:                                 break;
         case _MI_TUNING:                                             break;
         case _MI_CHANNEL:                                           break;
         case _MI_VOLUME:                                             break;
-        case _MI_LANGUAGE:                                 	    break;  
+        case _MI_LANGUAGE:                                 	    break;
         case _MI_SOURCE:                                            break;
         case _MI_LR_SWAP:                                           break;
         case _MI_UD_SWAP:                                          break;
         case _MI_DISPLAY_RATIO:                                 break;
         case _MI_RESET:							    break;
         case _MI_EXIT:                                                  break;
-	 default:break;	
+	 default:break;
     }
 
     // 3. Now enter sub menu
@@ -1167,9 +1173,34 @@ void CShowAutoSerachTotal(BYTE ucSearchTotal)
 {
 	ucSearchTotal = ucSearchTotal;
 	Gotoxy(3, 1, BYTE_DISPLAY);
-    CShowNumber1(ucSearchTotal, 1);    
+    CShowNumber1(ucSearchTotal, 1);
 }
 //---------------------------------------------------------------------------
+
+void OutputDisplaySize()
+{
+    CShowNumber1(stModeInfo.IHWidth, 0);
+    OutputChar(0x00);  // " "
+    OutputChar(0x5b);  // "X"
+    OutputChar(0x00);  // " "
+    CShowNumber1(stModeInfo.IVHeight, 0);
+}
+
+//----------------------------------------------------------------------------------------------------
+void OutputRefreshRate()
+{
+    CShowNumber1((stModeInfo.IHFreq/10), 0);
+    OutputChar('k');  // " "
+    OutputChar('H');  // " "
+    OutputChar('Z');  // " "
+    OutputChar(0x00);  // " "
+
+    CShowNumber1((stModeInfo.IVFreq/10), 0);
+    OutputChar('H');  // " "
+    OutputChar('Z');  // " "
+}
+
+
 #if(_VIDEO_TV_SUPPORT)
 void CShowFreq(WORD iFreqN)
 {
@@ -1178,8 +1209,8 @@ void CShowFreq(WORD iFreqN)
     // Get PIF freq
     lFreqTemp = (((float)iFreqN/_TUNER_BP) - ((float)_PIF_FREQ/1000))*100;
 
-    Gotoxy(8, 1, BYTE_DISPLAY); 
-    iFreqN = lFreqTemp/100;  // MHz  
+    Gotoxy(8, 1, BYTE_DISPLAY);
+    iFreqN = lFreqTemp/100;  // MHz
     CShowNumber1(iFreqN, 0);
     OutputChar(0x2E); // "."
 
@@ -1211,7 +1242,7 @@ bit CKeyStopAutoSearch(void)
     if (_MENU_KEY_MASK == CKeyScan() || _MENU_KEY_MESSAGE == ucIRKey || _IR_MENU_KEY_MESSAGE == ucIRKey)
         return 1;
   #endif
-  
+
   #if(_KEY_TYPE == _KT_PCB2660_003_5KEY)
       if (_MENU_KEY_MASK == CKeyScan() || _ESC_KEY_MESSAGE == ucIRKey)
         return 1;

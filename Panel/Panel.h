@@ -15,7 +15,7 @@
 #define _PNL_LVDS_HV070WSA                          9           //BOE
 
 
-#define _PANEL_TYPE                                 _PNL_LVDS_A089SW01
+#define _PANEL_TYPE                                 _PNL_C070VW01
 //-----------------------------------------------------------
 
 #if(_PANEL_TYPE == _PNL_AT102TN03)

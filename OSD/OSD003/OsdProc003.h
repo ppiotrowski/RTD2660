@@ -30,19 +30,19 @@
 #define LNG_THAI                     11
 
 //---- language mask---------------------
-// Çë²»Òª³¬¹ý11¹úÓïÑÔ,OSDÏÔÊ¾²»µ½12¹úÓïÑÔ
-#define ENGLISH_EN                  1  //Ó¢Óï
-#define LNG_FRA_EN                  0  //·¨Óï
-#define LNG_ITA_EN                  0  //Òâ´óÀûÓï
-#define LNG_DEU_EN                  0  //µÂÓï
-#define LNG_ESP_EN                  0  //Î÷°àÑÀÓï
-#define LNG_CHI_S_EN                1  //ÖÐÎÄ¼ò
-#define LNG_CHI_T_EN                0  //ÖÐÎÄ·±
-#define LNG_JAP_EN                  0  //ÈÕÓï
-#define LNG_KOR_EN                  0  //º«Óï
-#define LNG_RUS_EN                  0  //¶íÓï
-#define LNG_ARA_EN                  0  //°¢À­²®Óï
-#define LNG_THAI_EN                 0  //Ì©Óï
+// ï¿½ë²»Òªï¿½ï¿½ï¿½ï¿½11ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,OSDï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½12ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define ENGLISH_EN                  1  //Ó¢ï¿½ï¿½
+#define LNG_FRA_EN                  0  //ï¿½ï¿½ï¿½ï¿½
+#define LNG_ITA_EN                  0  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define LNG_DEU_EN                  0  //ï¿½ï¿½ï¿½ï¿½
+#define LNG_ESP_EN                  0  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define LNG_CHI_S_EN                1  //ï¿½ï¿½ï¿½Ä¼ï¿½
+#define LNG_CHI_T_EN                0  //ï¿½ï¿½ï¿½Ä·ï¿½
+#define LNG_JAP_EN                  0  //ï¿½ï¿½ï¿½ï¿½
+#define LNG_KOR_EN                  0  //ï¿½ï¿½ï¿½ï¿½
+#define LNG_RUS_EN                  0  //ï¿½ï¿½ï¿½ï¿½
+#define LNG_ARA_EN                  0  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define LNG_THAI_EN                 0  //Ì©ï¿½ï¿½
 
 #define _LANGUAGE_CNT				2///12
 #define _NOT_SHOW					0xFF
@@ -79,7 +79,7 @@ WORD code usLANGUAGE_MASK  =  ( ENGLISH_EN   << ENGLISH ) |
                               ( LNG_DEU_EN   << LNG_DEU ) |
                               ( LNG_ESP_EN   << LNG_ESP ) |
                               ( LNG_CHI_S_EN << LNG_CHI_S ) |
-                              ( LNG_CHI_T_EN << LNG_CHI_T ) |  
+                              ( LNG_CHI_T_EN << LNG_CHI_T ) |
                               ( LNG_JAP_EN   << LNG_JAP ) |
                               ( LNG_KOR_EN   << LNG_KOR ) |
                               ( LNG_RUS_EN   << LNG_RUS ) |
@@ -96,10 +96,10 @@ BYTE ucSourceTemp;
 bit bLoadLogoFont = 0;
 #endif
 
-bit bLoadOtherFont = 0;    
+bit bLoadOtherFont = 0;
 
 #else
-                         
+
 extern bit bOSDOnScreen;
 extern bit bDrawMute;
 extern bit bLoadOtherFont;
@@ -135,6 +135,7 @@ void CCoverKeyMsgToOsdEvent(SKeyToOsdEvent *tMsgTable,BYTE bUserPublicKeyEvnet);
 void DbgShowOSDState(void);
 void CShowNote(void);
 void CShowNoSignal(void);
+void CShowNoSupport(void);
 void CShowVisatech(void);
 void CChangeSourceAvSv(void);
 void ChangeDisplayMode(void);

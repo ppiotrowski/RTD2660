@@ -8,7 +8,7 @@
 #define FONT_BASE_ADDRESS			0x300
 
 
-BYTE code tPALETTE_0[] = 
+BYTE code tPALETTE_0[] =
 {
 	//-------------:Palette ----------
     0x00,0x00,0x00, 0x00,0x00,0xd0,     // 0000/0001
@@ -27,7 +27,7 @@ BYTE code tMainWindowStyle[] =
 
     SB_THICKNESS(7) | SB_HEIGHT(7) ,
     SHADOW_COLOR(0) | BORDER_COLOR(0),
-  
+
 
     R_GRADIENT_POLARITY_DEC |
     G_GRADIENT_POLARITY_INC |
@@ -41,7 +41,7 @@ BYTE code tMainWindowStyle[] =
     GRADIENT_PER_LEVEL(2) | WINDOW_COLOR(3),
     GRADIENT_FUNCTION_EN(0) |
     GRADIENT_DIRECTION_HOR |
-    SHADOW_BORDER_EN(0) |          
+    SHADOW_BORDER_EN(0) |
     WINDOW_TYPE(0) |
     WINDOW_ENABLE(1)
 };
@@ -62,14 +62,14 @@ BYTE code tNosignalWINDOW[] =
     GRADIENT_PER_LEVEL(2) | WINDOW_COLOR(2),
     GRADIENT_FUNCTION_EN(0) |
     GRADIENT_DIRECTION_HOR |
-    SHADOW_BORDER_EN(0) |          
+    SHADOW_BORDER_EN(0) |
     WINDOW_TYPE(0) |
-    WINDOW_ENABLE(1)   
+    WINDOW_ENABLE(1)
 };
-	
+
 BYTE code sVolume_ENG[] = "VOLUME";
 BYTE code sVolume_CHI[] =  "VOLUME";
-BYTE code *sVolume[]	    = 
+BYTE code *sVolume[]	    =
 {
      sVolume_ENG,
      sVolume_CHI,
@@ -105,6 +105,7 @@ BYTE code s4_3[] = "4:3";
 
 BYTE code sVisatech[] = "VISATECH";
 BYTE code sNoSignal[] = "NO SIGNAL";
+BYTE code sNoSupport[] = "NO SUPPORT";
 BYTE code sReseting[] = "PLEASE WAITING...";
 BYTE code sStandard[] = "STANDARD";
 BYTE code sSoft[] = "SOFT";
@@ -114,7 +115,7 @@ BYTE code sPersonal[] = "PERSONAL";
 //-------------------------------------------------------------------
 BYTE code sBrightness_ENG[]	= "BRIGHTNESS";
 BYTE code sBrightness_CHI[]	= {0x01,0x02,0x03,0x04,0x00};
-BYTE code *sBrightness[] = 
+BYTE code *sBrightness[] =
 {
 	sBrightness_ENG,
 	sBrightness_CHI,
@@ -122,7 +123,7 @@ BYTE code *sBrightness[] =
 //-------------------------------------------------------------------
 BYTE code sContrast_ENG[]	= "CONTRAST";
 BYTE code sContrast_CHI[]	= {0x05,0x06,0x07,0x08,0x03,0x04,0x00};
-BYTE code *sContrast[] = 
+BYTE code *sContrast[] =
 {
 	sContrast_ENG,
 	sContrast_CHI,
@@ -130,7 +131,7 @@ BYTE code *sContrast[] =
 //-------------------------------------------------------------------
 BYTE code sHue_ENG[]		= "TINT";//"HUE";
 BYTE code sHue_CHI[]		= {0x0e,0x0f,0x09,0x0a,0x00};
-BYTE code *sHue[] = 
+BYTE code *sHue[] =
 {
 	sHue_ENG,
 	sHue_CHI,
@@ -138,7 +139,7 @@ BYTE code *sHue[] =
 //-------------------------------------------------------------------
 BYTE code sSaturation_ENG[]	= "COLOR";//"SATURATION";
 BYTE code sSaturation_CHI[]	= {0x0b,0x0c,0x0e,0x0f,0x00};
-BYTE code *sSaturation[] = 
+BYTE code *sSaturation[] =
 {
 	sSaturation_ENG,
 	sSaturation_CHI,
@@ -146,7 +147,7 @@ BYTE code *sSaturation[] =
 //-------------------------------------------------------------------
 BYTE code sAutoPowerDown_ENG[]  = "AUTO POWER DOWN";
 BYTE code sAutoPowerDown_CHI[]  = {0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,0x00};
-BYTE code *sAutoPowerDown[] = 
+BYTE code *sAutoPowerDown[] =
 {
 	sAutoPowerDown_ENG,
 	sAutoPowerDown_CHI,
@@ -154,7 +155,7 @@ BYTE code *sAutoPowerDown[] =
 //-------------------------------------------------------------------
 BYTE code sLanguage_ENG[]	= "ENGLISH";
 BYTE code sLanguage_CHI[]	= {0x1c,0x1d,0x1e,0x1f,0x00};
-BYTE code *sLanguage[] = 
+BYTE code *sLanguage[] =
 {
 	sLanguage_ENG,
 	sLanguage_CHI,
@@ -162,7 +163,7 @@ BYTE code *sLanguage[] =
 //-------------------------------------------------------------------
 BYTE code sLang_ENG[]	= "LANGUAGE";
 BYTE code sLang_CHI[]	= {0x61,0x62,0x63,0x64,0x00};
-BYTE code *sLangName[] = 
+BYTE code *sLangName[] =
 {
 	sLang_ENG,
 	sLang_CHI,
@@ -170,7 +171,7 @@ BYTE code *sLangName[] =
 //-------------------------------------------------------------------
 BYTE code sAutoADJ_ENG[]	= "AUTO ADJUST";
 BYTE code sAutoADJ_CHI[]	= "AUTO ADJUST";
-BYTE code *sAutoADJName[] = 
+BYTE code *sAutoADJName[] =
 {
 	sAutoADJ_ENG,
 	sAutoADJ_CHI,
@@ -179,12 +180,12 @@ BYTE code *sAutoADJName[] =
 
 BYTE code sFm_ENG[]	= "FM";
 BYTE code sFm_CHI[]	= "FM";
-BYTE code *sFm[] = 
+BYTE code *sFm[] =
 {
 	sFm_ENG,
 	sFm_CHI,
 };
-code BYTE sFM_OFF[] = {"OFF"}; 
+code BYTE sFM_OFF[] = {"OFF"};
 code BYTE sFM_A1[] = {"87.7"};
 code BYTE sFM_A2[] = {"87.9"};
 code BYTE sFM_A3[] = {"88.0"};
@@ -208,7 +209,7 @@ code BYTE sMhz[] = {"MHZ"};
 
 BYTE code sReset_ENG[]		= "RESET";
 BYTE code sReset_CHI[]		= {0x3c,0x3d,0x3e,0x3f,0x00};
-BYTE code *sReset[] = 
+BYTE code *sReset[] =
 {
 	sReset_ENG,
 	sReset_CHI,
@@ -216,7 +217,7 @@ BYTE code *sReset[] =
 //-------------------------------------------------------------------
 BYTE code sOn_ENG[] = "ON";
 BYTE code sOn_CHI[] = {0x78,0x79,0x00};
-BYTE code *sOn[] = 
+BYTE code *sOn[] =
 {
 	sOn_ENG,
 	sOn_CHI,
@@ -224,7 +225,7 @@ BYTE code *sOn[] =
 //-------------------------------------------------------------------
 BYTE code sOff_ENG[] = "OFF";
 BYTE code sOff_CHI[] = {0x14,0x15,0x00};
-BYTE code *sOff[] = 
+BYTE code *sOff[] =
 {
 	sOff_ENG,
 	sOff_CHI,
@@ -232,7 +233,7 @@ BYTE code *sOff[] =
 //-------------------------------------------------------------------
 BYTE code sYes_ENG[] = "YES";
 BYTE code sYes_CHI[] = {0x5b,0x5c,0x00};
-BYTE code *sYes[] = 
+BYTE code *sYes[] =
 {
 	sYes_ENG,
 	sYes_CHI,
@@ -240,7 +241,7 @@ BYTE code *sYes[] =
 //-------------------------------------------------------------------
 BYTE code sNo_ENG[] = "NO";
 BYTE code sNo_CHI[] = {0x5d,0x5e,0x00};
-BYTE code *sNo[] = 
+BYTE code *sNo[] =
 {
 	sNo_ENG,
 	sNo_CHI,
@@ -249,7 +250,7 @@ BYTE code *sNo[] =
 //-------------------------------------------------------------------
 BYTE code sTvSystem_ENG[] = "TV SYSTEM";
 BYTE code sTvSystem_CHI[] = {0x0b,0x0c,0x0e,0x0f,0x65,0x66,0x67,0x68,0x00};
-BYTE code *sTvSystem[] = 
+BYTE code *sTvSystem[] =
 {
 	sTvSystem_ENG,
 	sTvSystem_CHI,
@@ -257,7 +258,7 @@ BYTE code *sTvSystem[] =
 //-------------------------------------------------------------------
 BYTE code sAutoSearch_ENG[] = "AUTO SEARCH";
 BYTE code sAutoSearch_CHI[] = {0x10,0x11,0x12,0x13,0x69,0x6a,0x6b,0x6c,0x00};
-BYTE code *sAutoSearch[] = 
+BYTE code *sAutoSearch[] =
 {
 	sAutoSearch_ENG,
 	sAutoSearch_CHI,
@@ -265,7 +266,7 @@ BYTE code *sAutoSearch[] =
 //-------------------------------------------------------------------
 BYTE code sManualSearch_ENG[] = "MANUAL SEARCH";
 BYTE code sManualSearch_CHI[] = {0x76,0x77,0x12,0x13,0x69,0x6a,0x6b,0x6c,0x00};
-BYTE code *sManualSearch[] = 
+BYTE code *sManualSearch[] =
 {
 	sManualSearch_ENG,
 	sManualSearch_CHI,
@@ -273,7 +274,7 @@ BYTE code *sManualSearch[] =
 //-------------------------------------------------------------------
 BYTE code sTuning_ENG[] = "TUNING";
 BYTE code sTuning_CHI[] = {0x6d,0x6e,0x09,0x0a,0x00};
-BYTE code *sTuning[] = 
+BYTE code *sTuning[] =
 {
 	sTuning_ENG,
 	sTuning_CHI,
@@ -281,7 +282,7 @@ BYTE code *sTuning[] =
 //-------------------------------------------------------------------
 BYTE code sChannel_ENG[] = "CHANNEL";
 BYTE code sChannel_CHI[] = {0x6b,0x6c,0x70,0x71,0x00};
-BYTE code *sChannel[] = 
+BYTE code *sChannel[] =
 {
 	sChannel_ENG,
 	sChannel_CHI,
@@ -289,7 +290,7 @@ BYTE code *sChannel[] =
 //-------------------------------------------------------------------
 BYTE code sBlue_ENG[] = "BLUE";
 BYTE code sBlue_CHI[] = {0x72,0x73,0x74,0x75,0x00};
-BYTE code *sBlue[] = 
+BYTE code *sBlue[] =
 {
 	sBlue_ENG,
 	sBlue_CHI,

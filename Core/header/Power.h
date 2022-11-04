@@ -17,7 +17,7 @@
 // Global Variables
 //--------------------------------------------------
 BYTE idata ucPowerControl = 0x00;
-#if(_DE_INTERLACE_TEST_OPTION==_ENABLE)	
+#if(_DE_INTERLACE_TEST_OPTION==_ENABLE)
 bit bDIstatus=0;
 #endif
 
@@ -62,7 +62,7 @@ void CPowerUpCustomerControl(void);
 // Extern Global Variables
 //--------------------------------------------------
 extern BYTE idata ucPowerControl;
-#if(_DE_INTERLACE_TEST_OPTION==_ENABLE)	
+#if(_DE_INTERLACE_TEST_OPTION==_ENABLE)
 extern bit bDIstatus;
 #endif
 
@@ -144,7 +144,8 @@ extern void CPowerLedSleep(void);
 // Macro of
 //--------------------------------------------------
 #define GET_PRE_VGA_CONNECT()        ((bit)(ucPowerControl & _BIT4))
-#define SET_PRE_VGA_CONNECT(x)       (ucPowerControl = (ucPowerControl & ~_BIT4) | ((BYTE)x << 4))
+//#define SET_PRE_VGA_CONNECT(x)       (ucPowerControl = (ucPowerControl & ~_BIT4) | ((BYTE)x << 4))
+#define SET_PRE_VGA_CONNECT(x)       (ucPowerControl = ucPowerControl)
 
 
 //--------------------------------------------------
@@ -158,7 +159,8 @@ extern void CPowerLedSleep(void);
 // Macro of HDMI Connect
 //--------------------------------------------------
 #define GET_PRE_HDMI_CONNECT()        ((bit)(ucPowerControl & _BIT6))
-#define SET_PRE_HDMI_CONNECT(x)       (ucPowerControl = (ucPowerControl & ~_BIT6) | ((BYTE)x << 6))
+//#define SET_PRE_HDMI_CONNECT(x)       (ucPowerControl = (ucPowerControl & ~_BIT6) | ((BYTE)x << 6))
+#define SET_PRE_HDMI_CONNECT(x)       (ucPowerControl = ucPowerControl)
 #endif
 
 

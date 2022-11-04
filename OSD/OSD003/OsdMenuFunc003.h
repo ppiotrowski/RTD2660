@@ -53,6 +53,8 @@ void DrawChannel(void);
 void DrawVolume(void);
 void DrawLanguage(void);
 void DrawSource(void);
+void OutputDisplaySize(void);
+void OutputRefreshRate(void);
 void DrawLRSwap(void);
 void DrawUDSwap(void);
 void DrawDisplayRatio(void);

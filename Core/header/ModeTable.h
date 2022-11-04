@@ -14,7 +14,7 @@
 enum PresetModeDef
 {
 	    _MODE_640x350_70HZ = 0,         	// Mode 00: 640x350_70Hz, 720x350_70Hz
-	    _MODE_640x400_56HZ,					// Mode 01: 640x400_56Hz
+	    _MODE_400x240_60HZ,					// Mode 01: 400x240_60HZ
 	    _MODE_640x400_70HZ,					// Mode 02: 640x400_70Hz, 720x400_70Hz
 	    _MODE_720x400_70HZ,             	// Mode 03: 640x400_70Hz, 720x400_70Hz
 	    _MODE_640x400_701HZ,          		// Mode 04: 640x400_70.1Hz
@@ -56,23 +56,23 @@ enum PresetModeDef
 	    _MODE_1680x1050_60HZ_RB,           	// Mode 40:
 	    _MODE_1680x1050_75HZ,            	// Mode 41:
 	    _MODE_1680x1050_75HZ_RB,            	// Mode 42:
-	    
+
     	_MODE_1920x1200_60HZ,           	// Mode 43:
     	_MODE_1920x1200_60HZ_RB,        	// Mode 44:
     	_MODE_1920x1200_75HZ,           	// Mode 45:
-    	_MODE_1920x1440_60HZ,           	// Mode 46:	 
+    	_MODE_1920x1440_60HZ,           	// Mode 46:
 		_MODE_1440x480i_60HZ,           		// Mode 47:
     	_MODE_1920x1080i_60HZ,          	// Mode 48:
     	_MODE_1920x1080_60HZ,           	// Mode 49:
-    	_MODE_1920x1080_60HZ_RB,        	// Mode 50:    	
-    	
+    	_MODE_1920x1080_60HZ_RB,        	// Mode 50:
+
     	_MODE_1440x900_60HZ,            	// Mode 51:
         _MODE_1440x900_60HZ_RB,         	// Mode 52:
         _MODE_1440x900_75HZ,            	// Mode 53:
 
 
-        _MODE_1360x768_60HZ,            	// Mode 54: 
-        _MODE_1360x768_70HZ,            	// Mode 55: 
+        _MODE_1360x768_60HZ,            	// Mode 54:
+        _MODE_1360x768_70HZ,            	// Mode 55:
         _MODE_1360x768_72HZ,            	// Mode 56:
         _MODE_1360x768_75HZ,            	// Mode 57:
 
@@ -122,16 +122,16 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
         144, 62,                                                            // IHStartPos, IVStartPos,
     },
 
-	
-    {   // Mode 1 : 640 x 400 x 56 Hz
-        0 |  _SYNC_HN_VN,                        			    			// Polarity Flags,
-        640, 400,                                                           // InputWidth, InputHeight,
-        248, 560,                                                           // IHFreq in kHz, IVFreq in Hz,
+
+    {   // Mode 1 : 400 x 240 x 60 Hz
+        0  | _SYNC_HP_VN,                        			    			// Polarity Flags,
+        400, 240,                                                           // InputWidth, InputHeight, 800
+        155, 600,                                                           // IHFreq in kHz, IVFreq in Hz,
         _HFREQ_TOLERANCE, _VFREQ_TOLERANCE,                                 // IHFreqTolerance in kHz, IVFreqTolerance in Hz,
-        848, 440,                                                           // IHTotal, IVTotal,
-        144, 33,                                                            // IHStartPos, IVStartPos,
+        494, 330,                                                           // IHTotal, IVTotal, 987
+        108, 12,                                                            // IHStartPos, IVStartPos,
     },
-	
+
 
     {   // Mode 2: 640 x 400 x 70 Hz
         //0 | _SYNC_HN_VN | _SYNC_HP_VN | _SYNC_HN_VP | _SYNC_HP_VP,        // Polarity Flags,
@@ -357,7 +357,7 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
     },
 
     {   // Mode 27 : 1280 x 768 x 60 Hz
-                                                          
+
         0 | _SYNC_HN_VN | _SYNC_HP_VN | _SYNC_HN_VP | _SYNC_HP_VP,			 // Polarity Flags,
 		1280, 768,                                                          // InputWidth, InputHeight,
         477, 600,                                                           // HFreq in kHz, VFreq in Hz,
@@ -498,7 +498,7 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
         112, 35,                                                            // HStartPos, VStartPos,
     },
 
-    {   // Mode 43 : 1920 x 1200 x 60 Hz 
+    {   // Mode 43 : 1920 x 1200 x 60 Hz
         0 | _SYNC_HN_VN | _SYNC_HP_VN | _SYNC_HN_VP | _SYNC_HP_VP,                                     // Polarity Flags,
         1920, 1200,                                                         // InputWidth, InputHeight,
         746, 600,                                                           // HFreq in kHz, VFreq in Hz,
@@ -516,7 +516,7 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
         112, 32,                                                            // HStartPos, VStartPos,
     },
 
-    {   // Mode 45: 1920 x 1200 x 75 Hz 
+    {   // Mode 45: 1920 x 1200 x 75 Hz
         0 | _SYNC_HN_VN | _SYNC_HP_VN | _SYNC_HN_VP | _SYNC_HP_VP,          // Polarity Flags,
         1920, 1200,                                                         // InputWidth, InputHeight,
         940, 750,                                                           // HFreq in kHz, VFreq in Hz,
@@ -525,7 +525,7 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
         552, 52,                                                            // HStartPos, VStartPos,
     },
 
-    {   // Mode 46: 1920 x 1440 x 60 Hz 
+    {   // Mode 46: 1920 x 1440 x 60 Hz
         0 | _SYNC_HN_VN | _SYNC_HP_VN | _SYNC_HN_VP | _SYNC_HP_VP,          // Polarity Flags,
         1920, 1440,                                                         // InputWidth, InputHeight,
         900, 600,                                                           // HFreq in kHz, VFreq in Hz,
@@ -534,7 +534,7 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
         552, 59,                                                            // HStartPos, VStartPos,
     },
 
-    {   // Mode 47 : 1440 x 480i x 60 Hz 
+    {   // Mode 47 : 1440 x 480i x 60 Hz
         0 | _SYNC_HN_VN | _SYNC_HN_VP | _SYNC_HP_VP,                        // Polarity Flags,
         1440, 240,                                                          // InputWidth, InputHeight,
         157, 600,                                                           // HFreq in kHz, VFreq in Hz,
@@ -543,7 +543,7 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
         276, 59,                                                            // HStartPos, VStartPos,
     },
 
-    {   // Mode 48 : 1920 x 1080i x 60 Hz 
+    {   // Mode 48 : 1920 x 1080i x 60 Hz
         0 | _SYNC_HN_VN | _SYNC_HN_VP | _SYNC_HP_VP,                        // Polarity Flags,
         1920, 540,                                                          // InputWidth, InputHeight,
         337, 600,                                                           // HFreq in kHz, VFreq in Hz,
@@ -597,7 +597,7 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
         1936, 942,                                                          // HTotal, VTotal,
         400, 39,                                                            // HStartPos, VStartPos,
     },
-	
+
 
       {   // Mode 54: 1360 x 768 x 60 Hz
         0 | _SYNC_HN_VN | _SYNC_HP_VN | _SYNC_HN_VP | _SYNC_HP_VP,          // Polarity Flags,
@@ -607,7 +607,7 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
         1768, 794,//800,                                                          // HTotal, VTotal,
         332, 26,                                                            // HStartPos, VStartPos,
     },
-    
+
     {   // Mode 55: 1360 x 768 x 70 Hz
         0 | _SYNC_HN_VN | _SYNC_HP_VN | _SYNC_HN_VP | _SYNC_HP_VP,          // Polarity Flags,
         1360, 768,                                                          // InputWidth, InputHeight,
@@ -625,7 +625,7 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
         1792, 802,                                                          // HTotal, VTotal,
         336, 31,                                                            // HStartPos, VStartPos,
     },
-    
+
     {   // Mode 57 : 1360 x 768 x 75 Hz
         0 | _SYNC_HN_VN | _SYNC_HP_VN | _SYNC_HN_VP | _SYNC_HP_VP,          // Polarity Flags,
         1360, 768,                                                          // InputWidth, InputHeight,
@@ -678,14 +678,14 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
         1706, 836,                                                          // HTotal, VTotal,
         346, 33,                                                            // HStartPos, VStartPos,
 	},
-	// 1280x600 60Hz   //62		
-  {   0| _SYNC_HN_VN | _SYNC_HP_VN | _SYNC_HN_VP | _SYNC_HP_VP,  
+	// 1280x600 60Hz   //62
+  {   0| _SYNC_HN_VN | _SYNC_HP_VN | _SYNC_HN_VP | _SYNC_HP_VP,
       1280,600, // ResIndex
        373, 600, // HFreq, VFreq
-     _HFREQ_TOLERANCE, _VFREQ_TOLERANCE, 
+     _HFREQ_TOLERANCE, _VFREQ_TOLERANCE,
       1688, 621, // HTotal, VTotal
       260, 17, // HStart, VStart
-   }, 	
+   },
 
 };
 
@@ -693,71 +693,71 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
 
 WORD code tDHTOTAL_PRESET_TABLE[_MAX_PRESET_MODE] =
 {
-	    1480,//_MODE_640x350_70HZ = 0,  
-	    //1480,//_MODE_640x350_85HZ,      
-	    1480,//_MODE_640x400_56HZ,			
-	    1480,//_MODE_640x400_70HZ,			
-	    1480,//_MODE_720x400_70HZ,      
-	    1480,//_MODE_640x400_701HZ,     
-	    //1480,//_MODE_640x400_85HZ,      
-	    //1480,//_MODE_720x400_85HZ,      
-	    1480,//_MODE_640x480_60HZ,      
-	    1480,//_MODE_640x480_66HZ,      
-	    1480,//_MODE_640x480_72HZ,      
-	    1480,//_MODE_640x480_75HZ,      
-	    //1480,//_MODE_640x480_85HZ,      
-	    1480,//_MODE_800x600_56HZ,      
-	    1480,//_MODE_800x600_60HZ,      
-	    1480,//_MODE_800x600_72HZ,      
-	    1480,//_MODE_800x600_75HZ,      
-	    //1480,//_MODE_800x600_85HZ,      
-	    1480,//_MODE_832x624_75HZ,      
-	    1480,//_MODE_1024x768_60HZ,     
-    	1480,//_MODE_1024x768_66HZ,     
-	    1480,//_MODE_1024x768_70HZ,     
-	    1480,//_MODE_1024x768_75HZ,     
-	    //1480,//_MODE_1024x768_85HZ,     
-	    1480,//_MODE_1024x800_73HZ,     
-	    //1480,//_MODE_1024x800_85HZ,     
-	    1480,//_MODE_1152x864_60HZ,     
-	    1480,//_MODE_1152x864_70HZ,     
-	    1480,//_MODE_1152x864_75HZ,     
-	    //1480,//_MODE_1152x864_85HZ,     
-	    1480,//_MODE_1152x870_75HZ,     
-	    1480,//_MODE_1152x900_66HZ,     
-	    1480,//_MODE_1152x900_76HZ,     
-	    1480,//_MODE_1280x720_60HZ,     
-	    1480,//_MODE_1280x720_75HZ,     
-	    1480,//_MODE_1280x768_60HZ,     
-	    1480,//_MODE_1280x768_70HZ,     
-	    1480,//_MODE_1280x768_75HZ,     
-	    1480,//_MODE_1280x960_60HZ,     
-	    1480,//_MODE_1280x960_75HZ,     
-	    //1480,//_MODE_1280x960_85HZ,     
-	    1480,//_MODE_1280x1024_60HZ,    
-	    1480,//_MODE_1280x1024_70HZ,    
-	    1480,//_MODE_1280x1024_75HZ,    
-	    //1480,//_MODE_1280x1024_85HZ,    
-	    1480,//_MODE_1600x1200_60HZ,    
-	    1480,//_MODE_1600x1200_65HZ,    
-	    1480,//_MODE_1600x1200_70HZ,    
-	    1480,//_MODE_1600x1200_75HZ,    
-	    //1480,//_MODE_1600x1200_85HZ,    
-	    1480,//_MODE_1680x1050_60HZ,              
-	    1480,//_MODE_1680x1050_60HZ_RB,           
-	    1480,//_MODE_1680x1050_75HZ,              
-	    1480,//_MODE_1680x1050_75HZ_RB,           
-    	1480,//_MODE_1920x1200_60HZ,              
-    	1480,//_MODE_1920x1200_60HZ_RB,           
-    	1480,//_MODE_1920x1200_75HZ,              
-    	1480,//_MODE_1920x1440_60HZ,              
-		1480,//_MODE_1440x480i_60HZ,              
-    	1480,//_MODE_1920x1080i_60HZ,             
-    	1480,//_MODE_1920x1080_60HZ,              
-    	1480,//_MODE_1920x1080_60HZ_RB,                    
-    	1480,//_MODE_1440x900_60HZ,               
-        1480,//_MODE_1440x900_60HZ_RB,            
-        1480,//_MODE_1440x900_75HZ,      
+	    1480,//_MODE_640x350_70HZ = 0,
+	    //1480,//_MODE_640x350_85HZ,
+	    1480,//_MODE_640x400_56HZ,
+	    1480,//_MODE_640x400_70HZ,
+	    1480,//_MODE_720x400_70HZ,
+	    1480,//_MODE_640x400_701HZ,
+	    //1480,//_MODE_640x400_85HZ,
+	    //1480,//_MODE_720x400_85HZ,
+	    1480,//_MODE_640x480_60HZ,
+	    1480,//_MODE_640x480_66HZ,
+	    1480,//_MODE_640x480_72HZ,
+	    1480,//_MODE_640x480_75HZ,
+	    //1480,//_MODE_640x480_85HZ,
+	    1480,//_MODE_800x600_56HZ,
+	    1480,//_MODE_800x600_60HZ,
+	    1480,//_MODE_800x600_72HZ,
+	    1480,//_MODE_800x600_75HZ,
+	    //1480,//_MODE_800x600_85HZ,
+	    1480,//_MODE_832x624_75HZ,
+	    1480,//_MODE_1024x768_60HZ,
+    	1480,//_MODE_1024x768_66HZ,
+	    1480,//_MODE_1024x768_70HZ,
+	    1480,//_MODE_1024x768_75HZ,
+	    //1480,//_MODE_1024x768_85HZ,
+	    1480,//_MODE_1024x800_73HZ,
+	    //1480,//_MODE_1024x800_85HZ,
+	    1480,//_MODE_1152x864_60HZ,
+	    1480,//_MODE_1152x864_70HZ,
+	    1480,//_MODE_1152x864_75HZ,
+	    //1480,//_MODE_1152x864_85HZ,
+	    1480,//_MODE_1152x870_75HZ,
+	    1480,//_MODE_1152x900_66HZ,
+	    1480,//_MODE_1152x900_76HZ,
+	    1480,//_MODE_1280x720_60HZ,
+	    1480,//_MODE_1280x720_75HZ,
+	    1480,//_MODE_1280x768_60HZ,
+	    1480,//_MODE_1280x768_70HZ,
+	    1480,//_MODE_1280x768_75HZ,
+	    1480,//_MODE_1280x960_60HZ,
+	    1480,//_MODE_1280x960_75HZ,
+	    //1480,//_MODE_1280x960_85HZ,
+	    1480,//_MODE_1280x1024_60HZ,
+	    1480,//_MODE_1280x1024_70HZ,
+	    1480,//_MODE_1280x1024_75HZ,
+	    //1480,//_MODE_1280x1024_85HZ,
+	    1480,//_MODE_1600x1200_60HZ,
+	    1480,//_MODE_1600x1200_65HZ,
+	    1480,//_MODE_1600x1200_70HZ,
+	    1480,//_MODE_1600x1200_75HZ,
+	    //1480,//_MODE_1600x1200_85HZ,
+	    1480,//_MODE_1680x1050_60HZ,
+	    1480,//_MODE_1680x1050_60HZ_RB,
+	    1480,//_MODE_1680x1050_75HZ,
+	    1480,//_MODE_1680x1050_75HZ_RB,
+    	1480,//_MODE_1920x1200_60HZ,
+    	1480,//_MODE_1920x1200_60HZ_RB,
+    	1480,//_MODE_1920x1200_75HZ,
+    	1480,//_MODE_1920x1440_60HZ,
+		1480,//_MODE_1440x480i_60HZ,
+    	1480,//_MODE_1920x1080i_60HZ,
+    	1480,//_MODE_1920x1080_60HZ,
+    	1480,//_MODE_1920x1080_60HZ_RB,
+    	1480,//_MODE_1440x900_60HZ,
+        1480,//_MODE_1440x900_60HZ_RB,
+        1480,//_MODE_1440x900_75HZ,
 };
 
 #endif  // End of #if(_DHTOTAL_BY_MODE == _ON)

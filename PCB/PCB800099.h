@@ -12,7 +12,7 @@
 #define _MCU_TYPE                       		_REALTEK_RTD3580D_EMCU
 
 //--------------------------------------------------
-//_KT_PCB2660_001 
+//_KT_PCB2660_001
 //--------------------------------------------------
 #define _KEY_TYPE                                  _KT_PCB2660_003//_KT_PCB2660_003//_KT_PCB2660_003_5KEY
 
@@ -75,29 +75,29 @@ _SOURCE_VGA,       _SOURCE_DVI,      _SOURCE_VIDEO_AV,    _SOURCE_VIDEO_SV,
 _SOURCE_VIDEO_YUV, _SOURCE_VIDEO_TV, _SOURCE_VIDEO_SCART, _SOURCE_HDMI,
 _SOURCE_YPBPR,     _SOURCE_YPBPR1,    _SOURCE_NONE
 */
-#define _SOURCE_0_TYPE                          _SOURCE_VIDEO_TV
-#define _SOURCE_1_TYPE                          _SOURCE_VIDEO_AV
-#define _SOURCE_2_TYPE                          _SOURCE_VIDEO_SV
-#define _SOURCE_3_TYPE                          _SOURCE_DVI
-#define _SOURCE_4_TYPE                          _SOURCE_HDMI
-#define _SOURCE_5_TYPE                          _SOURCE_YPBPR
-#define _SOURCE_6_TYPE                          _SOURCE_VGA
+#define _SOURCE_0_TYPE                          _SOURCE_HDMI
+#define _SOURCE_1_TYPE                          _SOURCE_VGA
+#define _SOURCE_2_TYPE                          _SOURCE_NONE
+#define _SOURCE_3_TYPE                          _SOURCE_NONE
+#define _SOURCE_4_TYPE                          _SOURCE_NONE
+#define _SOURCE_5_TYPE                          _SOURCE_NONE
+#define _SOURCE_6_TYPE                          _SOURCE_NONE
 #define _SOURCE_7_TYPE                          _SOURCE_NONE
 #define _SOURCE_8_TYPE                          _SOURCE_NONE
 #define _SOURCE_9_TYPE                          _SOURCE_NONE
 #define _SOURCE_10_TYPE                         _SOURCE_NONE
 
-#define _INPUT_PORT_NUM                         7
+#define _INPUT_PORT_NUM                         2
 
 //Default
-#define _NORMAL_SOURCE                        _SOURCE_VIDEO_AV//_SOURCE_VIDEO_AV//_SOURCE_VGA
+#define _NORMAL_SOURCE                        _SOURCE_VGA//_SOURCE_VIDEO_AV//_SOURCE_VGA
 
 //Support module
 #define _VGA_SUPPORT                                   _ON
 
 #define _VIDEO_SUPPORT                  		  _ON
-#define _VIDEO_AV_SUPPORT                          _ON
-#define _VIDEO_SV_SUPPORT                          _ON
+#define _VIDEO_AV_SUPPORT                          _OFF
+#define _VIDEO_SV_SUPPORT                          _OFF
 #define _VIDEO_TV_SUPPORT                          _OFF
 
 #define _VIDEO_YUV_SUPPORT                        _OFF
@@ -110,12 +110,12 @@ _SOURCE_YPBPR,     _SOURCE_YPBPR1,    _SOURCE_NONE
 
 
 //Audio
-#define AUDIO_TYPE                              _AUDIO_PWM   // _AUDIO_SC7313,_AUDIO_PWM    
+#define AUDIO_TYPE                              _AUDIO_PWM   // _AUDIO_SC7313,_AUDIO_PWM
 //TV
 #define _TV_CHIP                                   _TV_NONE//_TV_NONE,_TV_XF_6AC
 #define _ADDR_IfPllDM                           0x86//_TB1338_ADDR
 #define _IF_PLL_DE_CHIP                      _IF_PLL_DE_9886 //_IF_PLL_DE_1338,_IF_PLL_DE_135X
-#define _CARRIER_SELECT                      _INTER_CARRIER  //_SPLIT_CARRIER,_INTER_CARRIER 
+#define _CARRIER_SELECT                      _INTER_CARRIER  //_SPLIT_CARRIER,_INTER_CARRIER
 #define _ADDR_TUNER                            0xC0
 
 
@@ -152,7 +152,7 @@ _SOURCE_YPBPR,     _SOURCE_YPBPR1,    _SOURCE_NONE
 #define _ADC1_INPUT_SWAP_RB              		_OFF
 #define _ADC1_INPUT_SWAP_GB              		_ON
 
-                  
+
 
 //--------------------------------------------------
 // Definitions of MAIN_TYPE
@@ -169,7 +169,7 @@ _SOURCE_YPBPR,     _SOURCE_YPBPR1,    _SOURCE_NONE
 #define _MAIN_TYPE                      	    	       _MAIN_TYPE_1
 
 //--------------------------------------------------
-// RTD3580D Pin Share 
+// RTD3580D Pin Share
 //--------------------------------------------------
 
 #define _PIN_50 								(2 & 0x07)	// 0 ~ 5 (0: P6D0i, 1: P6D0o<open-drain>, 2: P6D0o<push-pull>, 3: ADCA0, 4: AVOUT, 5: VCLK)
@@ -212,8 +212,8 @@ _SOURCE_YPBPR,     _SOURCE_YPBPR1,    _SOURCE_NONE
 #define _PIN_114								(2 & 0x07)	// 0 ~ 6 (0: P3D7i, 1: P3D7o<open-drain>, 2: P3D7o<push-pull>, 3: TCON[13], 4: SD3, 5: SPDIF3, 6: VCLK)
 #define _PIN_121								(3 & 0x03)	// 0 ~ 3 (0: DDCSCL3, 1: P7D3i, 2: P7D3o<open-drain>, 3: P7D3o<push-pull>)
 #define _PIN_122								(3 & 0x03)	// 0 ~ 3 (0: DDCSDA3, 1: P7D2i, 2: P7D2o<open-drain>, 3: P7D2o<push-pull>)
-#define _PIN_123								(2 & 0x03)	// 0 ~ 3 (0: DDCSDA2, 1: P7D1i, 2: P7D1o<open-drain>, 3: P7D1o<push-pull>)
-#define _PIN_124								(2 & 0x03)	// 0 ~ 3 (0: DDCSCL2, 1: P7D0i, 2: P7D0o<open-drain>, 3: P7D0o<push-pull>)
+#define _PIN_123								(0 & 0x03)	// 0 ~ 3 (0: DDCSDA2, 1: P7D1i, 2: P7D1o<open-drain>, 3: P7D1o<push-pull>)
+#define _PIN_124								(0 & 0x03)	// 0 ~ 3 (0: DDCSCL2, 1: P7D0i, 2: P7D0o<open-drain>, 3: P7D0o<push-pull>)
 
 
 
@@ -235,7 +235,7 @@ sbit    bLIGHTPOWER                             = P3^4;
 //--------------------------------------------------
 #define _NON_CONNECT_PIN			_NOT_USE_REG//(_MCU_PORT54)
 
-#define bVGACONNECT				_NON_CONNECT_PIN
+#define bVGACONNECT                             P1^3 //_NON_CONNECT_PIN
 #define bHDMICONNECT							(_MCU_PORT61)
 #define bHot_Plug								(_MCU_PORT57)
 #define bDVICONNECT                             _NON_CONNECT_PIN
@@ -269,11 +269,11 @@ sbit    bLIGHTPOWER                             = P3^4;
 //KEY1
 #define bAD0_Key_NONE                       255
 #define bAD0_Key_1                              0//POWER
-#define bAD0_Key_2                              43//source
+#define bAD0_Key_2                              44//source
 #define bAD0_Key_3                              255//Sleep time
-#define bAD0_Key_4                              28//Left
-#define bAD0_Key_5                              10//Menu
-#define bAD0_Key_6                              18//Right
+#define bAD0_Key_4                              31//Left
+#define bAD0_Key_5                              8//Menu
+#define bAD0_Key_6                              17//Right
 #define bAD0_Key_7                              255//MUTE
 #define bAD0_Key_8                              1000//TCON
 #endif
@@ -335,12 +335,12 @@ sbit bAML8613_PWR                         = P3^7;
 #endif
 
 // FM IO
-#define FMI2CSDA							(_MCU_PORT71)
-#define FMI2CSCL								(_MCU_PORT70)
+#define FMI2CSDA						_NON_CONNECT_PIN //(_MCU_PORT71)
+#define FMI2CSCL						_NON_CONNECT_PIN //(_MCU_PORT70)
 //sbit bFMPower									    	= P3^5;
 
 
-//_RTD_PWM0, _RTD_PWM1, _RTD_PWM2, _RTD_PWM3, _RTD_PWM4, _RTD_PWM5 
+//_RTD_PWM0, _RTD_PWM1, _RTD_PWM2, _RTD_PWM3, _RTD_PWM4, _RTD_PWM5
 #define bVOLUME_PWM                                      _NON_CONNECT_PIN
 
 #endif
@@ -364,7 +364,7 @@ sbit bAML8613_PWR                         = P3^7;
 // Definitions for Backlight PWM Setting
 //--------------------------------------------------
 /*
-_RTD_PWM0, _RTD_PWM1, _RTD_PWM2, _RTD_PWM3, _RTD_PWM4, _RTD_PWM5 
+_RTD_PWM0, _RTD_PWM1, _RTD_PWM2, _RTD_PWM3, _RTD_PWM4, _RTD_PWM5
 */
 #define _BACKLIGHT_PWM                         _RTD_PWM1
 #define _BACKLIGHT_PWM_INVERSE                 _DISABLE    // _ENABLE,  _DISABLE
@@ -402,7 +402,7 @@ _RTD_PWM0, _RTD_PWM1, _RTD_PWM2, _RTD_PWM3, _RTD_PWM4, _RTD_PWM5
 #define _DDC_CHANNEL_FOR_D1 			_DDC3	// DDC Channel SEL for digital input 1
 
 //--------------------------------------------------
-// Interior VGA  EDID 
+// Interior VGA  EDID
 //--------------------------------------------------
 #define _VGA_EDID                                        _ON
 
@@ -413,7 +413,7 @@ _RTD_PWM0, _RTD_PWM1, _RTD_PWM2, _RTD_PWM3, _RTD_PWM4, _RTD_PWM5
 #define _HDMI_DDC_CHANNEL_SELECT 		_DDC_CHANNEL_FOR_D0
 
 //--------------------------------------------------
-// Interior DVI  EDID 
+// Interior DVI  EDID
 //--------------------------------------------------
 #define _DVI_EDID                                          _OFF
 #define _DVI_DDC_CHANNEL_SELECT             _DDC_CHANNEL_FOR_D1
@@ -448,10 +448,10 @@ _RTD_PWM0, _RTD_PWM1, _RTD_PWM2, _RTD_PWM3, _RTD_PWM4, _RTD_PWM5
 
 #ifdef __KEY__
 
-code BYTE tIOKeyMask[] = 
+code BYTE tIOKeyMask[] =
 {
 	// end flag
-	0xFF,	0xFF,	
+	0xFF,	0xFF,
 };
 
 #else

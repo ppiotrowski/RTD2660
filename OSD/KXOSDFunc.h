@@ -217,7 +217,7 @@
 
 
 #define GET_LANGUAGE()        			stOsdUserData.Language
-#define SET_LANGUAGE(value)    			stOsdUserData.Language = value 
+#define SET_LANGUAGE(value)    			stOsdUserData.Language = value
 
 //--------------------------------------------------
 // Definitions of Ver. Position Settings Used by COsdFxGetVPositionRange()
@@ -295,15 +295,15 @@ void OSDLine(BYTE row, BYTE col, BYTE length, BYTE value, BYTE indicate);
 void OSDClear(BYTE row_start, BYTE height,
                BYTE col_start, BYTE width,
                BYTE Value, BYTE indicate);
-void OutputDisplaySize();       //在当前的位置输出显示尺寸
-void OutputRefrushRate();       //在当前的位置输出刷新频率
+void OutputDisplaySize();
+void OutputRefreshRate();
 
 void COsdFxEnableOsd(void);
 void COsdFxDisableOsd(void);
 void COsdFxChangeWindowColor(BYTE ucWindowColor, BYTE *pStyle);
 void COsdFxDrawWindow(WORD usXStart, WORD usYStart, WORD usXEnd, WORD usYEnd, BYTE *pStyle);
 void OutputDisplaySize();
-void OutputRefrushRate();
+void OutputRefreshRate();
 
 BYTE COsdCtrlGetHPosition(void);
 WORD COsdFxGetVPositionRange(BYTE ucPar);

@@ -31,7 +31,7 @@
 // Debug Tool
 //--------------------------------------------------
 //_NONE,_ISP_FOR_RTD3580D_EMCU,_ISP_FOR_DDCCI
-#define _DEBUG_TOOL                             _ISP_FOR_DDCCI
+#define _DEBUG_TOOL                            _ISP_FOR_RTD3580D_EMCU // _ISP_FOR_DDCCI
 
 #define _RS232_EN					 _OFF
 
@@ -49,7 +49,7 @@
 #define _FAC_OSD                                     _DISABLE//_ENABLE
 
 
-#define _LOGO_ENABLE                           	        _OFF//  _ON//_OFF	
+#define _LOGO_ENABLE                           	        _OFF//  _ON//_OFF
 #define _LOGO_SIZE							0x00
 #define _LOGO_DISPLAY_TIME					3
 
@@ -80,7 +80,7 @@
 #define _BOUL              				        1
 
 #define _NONLINEAR_SCALEUP_METHOD       _ROOF
-                                               
+
 
 //--------------------------------------------------
 // Color Preference
@@ -89,7 +89,7 @@
 #define _PANASONIC_STYLE				        1
 
 #define _COLOR_PREFERENCE				        _PANASONIC_STYLE
-                                               
+
 //--------------------------------------------------
 // Definitions of Gamma Table Type
 //--------------------------------------------------
@@ -166,10 +166,10 @@
 #define _HSYNC_SOURCE_SWAP              		_OFF
 
 //--------------------------------------------------
-// 
+//
 //--------------------------------------------------
 #define _DVI_DE_ONLY_SUPPORT            		_ON
- 
+
 //--------------------------------------------------
 // Set Different Display Information by Mode
 //--------------------------------------------------
@@ -179,7 +179,7 @@
 //--------------------------------------------------
 // Set DClk Spread Spectrum Range
 //--------------------------------------------------
-#define _DCLK_SPREAD_RANGE              		0	//0~15, 0¡÷disable, 15¡÷7.5%
+#define _DCLK_SPREAD_RANGE              		0	//0~15, 0ï¿½ï¿½disable, 15ï¿½ï¿½7.5%
 
 
 //--------------------------------------------------
@@ -223,7 +223,7 @@
 
 
 //--------------------------------------------------
-// YPbPr source non-check APLL unlock for DVD player 
+// YPbPr source non-check APLL unlock for DVD player
 //--------------------------------------------------
 #define _YPBPR_NONE_CHECK_APLL			   	_ENABLE
 
@@ -234,7 +234,7 @@
 #define _NEW_TYPE								1
 
 #define _YPBPR_AUTO_TYPE						_NEW_TYPE
-	
+
 //-------------------------------------------------------
 // De-Interlace Supported
 //-------------------------------------------------------
@@ -248,12 +248,12 @@
 //-------------------------------------------------------
 //  Double Scaling
 //-------------------------------------------------------
-#define _Double_Scaling							_DISABLE	
+#define _Double_Scaling							_DISABLE
 
 //-------------------------------------------------------
 //  AdjustCustomerColorMode
 //-------------------------------------------------------
-#define _AdjustCustomerColorMode				_DISABLE	
+#define _AdjustCustomerColorMode				_DISABLE
 
 
 //--------------------------------------------------
@@ -291,7 +291,7 @@
 //---------------------------------------
 //2660 ver B IC need set 1
 //---------------------------------------
-#define _2660_IC_VERB 	                       1     //scaler ÊÇs4Ñ¡1²»ÊÇÑ¡0
+#define _2660_IC_VERB 	                       1     //scaler ï¿½ï¿½s4Ñ¡1ï¿½ï¿½ï¿½ï¿½Ñ¡0
 
 
 // Key Define's
@@ -317,7 +317,7 @@
 #define _READ_polarity_DATA                    _DISABLE
 
 #define _READ_TV_MODE_DATA                  _DISABLE
-                        
+
 
 #define _CHECK_MCS                                     0
 #define _TV_READY                                       1//0
@@ -325,7 +325,7 @@
 #define _FUNC_SLEEP						1
 #define _FUNC_PICTUREMODE				0
 
-#define _SLEEPKEY_FUNC					_FUNC_SLEEP 
+#define _SLEEPKEY_FUNC					_FUNC_SLEEP
 
 
 
