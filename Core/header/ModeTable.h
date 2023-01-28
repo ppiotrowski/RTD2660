@@ -125,11 +125,11 @@ ModeTableType code tINPUTMODE_PRESET_TABLE[_MAX_PRESET_MODE] =
 
     {   // Mode 1 : 400 x 240 x 60 Hz
         0  | _SYNC_HP_VN,                        			    			// Polarity Flags,
-        400, 240,                                                           // InputWidth, InputHeight, 800
+        400, 250,                                                           // InputWidth, InputHeight, 240
         155, 600,                                                           // IHFreq in kHz, IVFreq in Hz,
         _HFREQ_TOLERANCE, _VFREQ_TOLERANCE,                                 // IHFreqTolerance in kHz, IVFreqTolerance in Hz,
         494, 330,                                                           // IHTotal, IVTotal, 987
-        108, 12,                                                            // IHStartPos, IVStartPos,
+        108, 5,                                                            // IHStartPos, IVStartPos, 12
     },
 
 

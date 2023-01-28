@@ -182,7 +182,7 @@ void CMiscApplyDoubleBuffer(void)
                     break;
                 }
             }
-            while(--ucTimeout); 
+            while(--ucTimeout);
     }
 }
 
@@ -204,7 +204,7 @@ void CMiscClearStatusRegister(void)
 //--------------------------------------------------
 void CMiscSetPinShare(void)
 {
-        
+
     //MCU_PIN_SHARE_CTRL00_FF96 = (((BYTE)_PIN_58_59_DDC1_ENABLE<<7) | (_PIN_58<<5) | (_PIN_59<<3) | (_PIN_50));
     // uart add
     MCU_PIN_SHARE_CTRL00_FF96 = (MCU_PIN_SHARE_CTRL00_FF96 & 0xF8) | (_PIN_50);
@@ -243,6 +243,10 @@ void CMiscIspack(void)
     {
         if(bRunCommand)
         {
+            /*DebugPrintf("CMiscIspack\n",0x00);
+            CUartPutToScr(ucDdcciData[0], 1);
+            DebugPrintf("\n",0x00);*/
+
             switch(ucDdcciData[0])
             {
 
@@ -250,10 +254,13 @@ void CMiscIspack(void)
                     halt = ucDdcciData[1];
                     break;
 
-                // andy extand 
+                // andy extand
                 case 0x10:
                      ucVirtualKey = ucDdcciData[1];
-                     break;                    
+                     /*DebugPrintf("VirtualKey\n",0x00);
+                     CUartPutToScr(ucDdcciData[1], 1);
+                     DebugPrintf("\n",0x00);*/
+                     break;
 
                 case 0x41:
                     MCU_I2C_IRQ_CTRL2_FF2A  |= 0x20;
@@ -267,7 +274,7 @@ void CMiscIspack(void)
                     CI2cRead(ucDdcciData[2], ucDdcciData[1], 1, pData);
                     TxBUF = pData[0];
                     MCU_I2C_DATA_OUT_FF26 = TxBUF;
-                    
+
                     break;
 
                 // for RTD & I2c Device
@@ -281,9 +288,9 @@ void CMiscIspack(void)
 
                 case 0x24:
                     CI2cWrite(ucDdcciData[2], ucDdcciData[1], 1, &ucDdcciData[3]);
-                    
+
                     break;
-                    
+
                 case 0x20:
                     CScalerSetByte(ucDdcciData[2], ucDdcciData[1]);
                     break;
@@ -315,9 +322,9 @@ void GetVirtualKey(void)
 // Input Value  : None
 // Output Value : None
 //--------------------------------------------------
-void CInitIspack(void) 
+void CInitIspack(void)
 {
-    MCU_I2C_SET_SLAVE_FF23 = 0x6a;
+    MCU_I2C_SET_SLAVE_FF23 = 0x6b;
     MCU_I2C_IRQ_CTRL_FF28  = 0x3f;
     MCU_IRQ_PRIORITY_FF01  = 0x01;      //assign int1 (IRQ2)
 
@@ -337,15 +344,16 @@ void CInitIspack(void)
 void CMiscIspDebugProc(void)
 {
     #if(_DEBUG_TOOL == _ISP_FOR_RTD3580D_EMCU)
-    CMiscIspack();
+        IntProcDdcci();
+        CMiscIspack();
     #endif
 
     #if(_DEBUG_TOOL == _ISP_FOR_DDCCI && _SUPPORTDDCCI)
-    CDDCCICommand();
+        CDDCCICommand();
     #endif
 
     #if(_RS232_EN)
-    CUartHandler();
+        CUartHandler();
     #endif
 }
 //--------------------------------------------------
@@ -365,29 +373,29 @@ void CDDCCIInitial()
 void CInitEdid(void)
 {
     MCU_HDMI_DDC_ENA_FF2C = 0x00;  //disable HDMI DDC channel
-    
+
 //Gary for Interior HDMI  DDC   20070711
 #if ((_HDMI_EDID==_ON)&&(_HDMI_DDC_CHANNEL_SELECT==_DDC2))
-              
+
     MCU_DVI_DDC_ENA_FF1E  = 0x01;
     MCU_HDMI_DDC_ENA_FF2C = 0x00;//0x01;  //disable HDMI DDC channel
-    MCU_DDCRAM_PART_FF21  = 0x2b;  //addcram_st=2(0xfd00),dddcram_st=20(0xfd80),hddcram_st=3 
-    
+    MCU_DDCRAM_PART_FF21  = 0x2b;  //addcram_st=2(0xfd00),dddcram_st=20(0xfd80),hddcram_st=3
+
 #elif((_HDMI_EDID==_ON)&&(_HDMI_DDC_CHANNEL_SELECT==_DDC3))
 
     MCU_DVI_DDC_ENA_FF1E  = 0x01;  //disable DVI DDC channel
-    MCU_HDMI_DDC_ENA_FF2C = 0x01;  
-    MCU_DDCRAM_PART_FF21  = 0x3a;  //addcram_st=3(0xFd80),dddcram_st=2(0xfd80),hddcram_st=2(0xfe00) 
+    MCU_HDMI_DDC_ENA_FF2C = 0x01;
+    MCU_DDCRAM_PART_FF21  = 0x3a;  //addcram_st=3(0xFd80),dddcram_st=2(0xfd80),hddcram_st=2(0xfe00)
 
 #else
-    
+
     MCU_DVI_DDC_ENA_FF1E  = 0x00;  //Disable DVI DDC channel
     MCU_HDMI_DDC_ENA_FF2C = 0x00;  //disable HDMI DDC channel
-    MCU_DDCRAM_PART_FF21  = 0x3f;  //addcram_st=3,dddcram_st=3,hddcram_st=3 (Xram=640 Byte) 
-#endif  
+    MCU_DDCRAM_PART_FF21  = 0x3f;  //addcram_st=3,dddcram_st=3,hddcram_st=3 (Xram=640 Byte)
+#endif
 
 #if _VGA_EDID
-    MCU_ADC_DDC_ENA_FF1B = 0x01;  
+    MCU_ADC_DDC_ENA_FF1B = 0x01;
 #else
     MCU_ADC_DDC_ENA_FF1B = 0x00;   //Disable ADC DDC channel
 #endif
@@ -401,8 +409,8 @@ void CLoadEdid(void)
 
     BYTE xdata *p;
     BYTE code *pEdid;
-    
-    #if(_HDMI_EDID == _ON) 
+
+    #if(_HDMI_EDID == _ON)
     p = MCU_DDCRAM_HDMI;
     pEdid = &tHDMI_EDID_DATA[0];
     for(i=0;i<256;i++)
@@ -418,7 +426,7 @@ void CLoadEdid(void)
     {
         *p++ = *pEdid++;
     }
-    
+
     #endif
 
 
@@ -429,7 +437,7 @@ void CLoadEdid(void)
     {
         *p++ = *pEdid++;
     }
-    #endif  
+    #endif
 }
 //--------------------------------------------------
 

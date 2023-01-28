@@ -259,7 +259,6 @@ void CSyncProcess(void)
             SET_SHOW_NO_SIGNAL();
             CModeSetFreeRun();
             SET_OSD_READYFORDISPLAY();
-
         }
 
         ucInputSyncType = _NO_SYNC_STATE;
@@ -377,7 +376,7 @@ void CSetModeReady(void)
             if (stModeUserData.FirstAuto == 0)
             {
                 stModeUserData.FirstAuto = 1;
-                ucOsdEventMsg = _DO_AUTO_CONFIG;
+                //ucOsdEventMsg = _DO_AUTO_CONFIG;
             }
         }
     }
@@ -428,7 +427,7 @@ void CSetModeReady(void)
         if (stModeUserData.FirstAuto == 0)
         {
             stModeUserData.FirstAuto = 1;
-            ucOsdEventMsg = _DO_AUTO_CONFIG;
+            //ucOsdEventMsg = _DO_AUTO_CONFIG;
         }
     }
 #endif

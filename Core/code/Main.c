@@ -64,7 +64,7 @@ void CMainUserInitial(void)
  *
  */
 void CMainSystemInitial(void)
-{          
+{
 #if(_VIDEO_TV_SUPPORT)
  #if(_IF_PLL_DE_CHIP == _IF_PLL_DE_1338 || _IF_PLL_DE_CHIP == _IF_PLL_DE_135X)
     ucAddrIfPllDM = _ADDR_IfPllDM;
@@ -79,7 +79,7 @@ void CMainSystemInitial(void)
 
 #if(_HDCP_SUPPORT == _ON && _HDMI_HOT_PLUG_OPTION)
     bHot_Plug = _HOT_PLUG_LOW;
-    bHot_Plug2 = _HOT_PLUG_LOW;    
+    bHot_Plug2 = _HOT_PLUG_LOW;
 #endif
 
 	CUartSendString("Init timer\n");
@@ -95,13 +95,15 @@ void CMainSystemInitial(void)
 
     #if(_MEMORY_LOCATION == _FLASH)
          InitFlash();
-    #endif    
+    #endif
 
 	CUartSendString("eeprom check\n");
     // Check eeprom and load eeprom settings
 	CEepromStartupCheck();
 
-    //_SET_INPUT_SOURCE(_SOURCE_VIDEO_AV);
+    _SET_INPUT_SOURCE(_SOURCE_VGA);
+    CDoReset();
+    SET_PANELPOWERSTATUS();
     if(GET_POWERSTATUS())  // Power up
        CPowerLedRed();
     else
@@ -110,7 +112,7 @@ void CMainSystemInitial(void)
     }
 
 	CUartSendString("scaer init\n");
-    
+
     // Initial scaler settings
 	CScalerInitial();
 
@@ -130,17 +132,17 @@ void CMainSystemInitial(void)
     CUartInit();
 #endif
 
-	CUartSendString("IR init\n");    
+	CUartSendString("IR init\n");
     CIrdaInitial();
 
-	CUartSendString("Get Extend \n");    
+	CUartSendString("Get Extend \n");
 	GetExtendEnable();
 
 	SetPanelLR();
 	SetPanelUD();
 
 	SetFM();
-	//CUartSendString("init over \n");    
+	//CUartSendString("init over \n");
 }
 
 /**
@@ -157,18 +159,18 @@ void main(void)
     CUartSendString("Begin...\n");
     do
     {
-        CMiscIspDebugProc();                                         
+        CMiscIspDebugProc();
         CTimerHandler();
         CKeyHandler();
         CModeHandler();
-        COsdHandler(); 
+        COsdHandler();
     }while(_TRUE);
 }
 
 /*
 void DbgLed(unsigned char ucCount)
 {
-	unsigned char i;	     
+	unsigned char i;
 	for(i=0; i<ucCount; i++)
 	{
 		CPowerLedOrange();

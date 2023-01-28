@@ -19,23 +19,25 @@ SKeyToOsdEvent code tKONoSignal[] =
 //------------------------------------------------------------
 // Key map
 SKeyToOsdEvent code tKOPublic[] =
-{         
+{
 	// source
 	{_SOURCE_KEY_MESSAGE,		_OE_CHG_SOURCE_AV_SV},
 	{_IR_SOURCE_KEY_MESSAGE,	_OE_CHG_SOURCE_AV_SV},
-	
-#if(_SLEEPKEY_FUNC == _FUNC_SLEEP)	
+	{_VGA_KEY_MESSAGE,	_OE_INPUT_VGA},
+	{_DVI_KEY_MESSAGE,	_OE_INPUT_HDMI},
+
+#if(_SLEEPKEY_FUNC == _FUNC_SLEEP)
 	{_SLEEP_KEY_MESSAGE,		_OE_SC_TIMER_CHANGE},
 #else
 	{_SLEEP_KEY_MESSAGE,		_OE_CHANGE_PICTURE_MODE},
-#endif	       
+#endif
        {_MUTE_KEY_MESSAGE,              _OE_SC_MUTE       },
-       
+
        { _IR_DISPLAY_RATIO_MESSAGE, _OE_CHANGE_PICTURE_MODE},//wtao100416
-       
+
 	{_LEFT_KEY_MESSAGE,		       _OE_GOTO_MENU_VOLUME},   // Vol-
 	{_RIGHT_KEY_MESSAGE,		_OE_GOTO_MENU_VOLUME},   // Vol+
-	
+
 	{_IR_LEFT_KEY_MESSAGE,		_OE_GOTO_MENU_VOLUME},   // Vol-
 	{_IR_RIGHT_KEY_MESSAGE,		_OE_GOTO_MENU_VOLUME},   // Vol+
 
@@ -50,8 +52,8 @@ SKeyToOsdEvent code tKOPublic[] =
        {_BRIGHT_DEC_KEY_MESSAGE,	_OE_GOTO_MENU_BRIGHTNESS},
        {_BRIGHT_INC_KEY_MESSAGE,	_OE_GOTO_MENU_BRIGHTNESS},
        {_SATURATION_DEC_KEY_MESSAGE,	_OE_GOTO_MENU_SATURATION},
-       {_SATURATION_INC_KEY_MESSAGE,	_OE_GOTO_MENU_SATURATION},    
-   
+       {_SATURATION_INC_KEY_MESSAGE,	_OE_GOTO_MENU_SATURATION},
+
        {_Reset_KEY_MESSAGE,_OE_GOTO_MENU_RESET},//KEY Reset wtao100413
        {_IR_Reset_KEY_MESSAGE,_OE_GOTO_MENU_RESET},//IRKEY Reset wtao100413
     // End flag,not modify there
@@ -80,7 +82,7 @@ SKeyToOsdEvent code tKOMainMenu[] =
 	{_IR_MENU_KEY_MESSAGE,		_OE_MENU_NEXT      },
 	{_IR_LEFT_KEY_MESSAGE,      _OE_ADJ_DEC			},
 	{_IR_RIGHT_KEY_MESSAGE,     _OE_ADJ_INC			},
-	
+
 	{_IR_DOWN_KEY_MESSAGE,      _OE_MENU_PREV			},//IRkey up down wtao100413
 	{_IR_UP_KEY_MESSAGE,     _OE_MENU_NEXT},
 //       {_EXIT_KEY_MESSAGE,   _OE_RETURN_UPMENU},//wtao100412
@@ -115,7 +117,7 @@ SKeyToOsdEvent code tKOContrastMenu[] =
 	{_IR_MENU_KEY_MESSAGE,		_OE_MENU_NEXT      },
 	{_IR_LEFT_KEY_MESSAGE,      _OE_ADJ_DEC			},
 	{_IR_RIGHT_KEY_MESSAGE,     _OE_ADJ_INC			},
-	
+
 	{_IR_DOWN_KEY_MESSAGE,      _OE_MENU_PREV			},//IRkey up down wtao100413
 	{_IR_UP_KEY_MESSAGE,     _OE_MENU_NEXT},
     // End flag,not modify there
@@ -134,10 +136,10 @@ SKeyToOsdEvent code tKOBrightnessMenu[] =
 	{_IR_MENU_KEY_MESSAGE,		_OE_MENU_NEXT      },
 	{_IR_LEFT_KEY_MESSAGE,      _OE_ADJ_DEC			},
 	{_IR_RIGHT_KEY_MESSAGE,     _OE_ADJ_INC			},
-	
+
 	{_IR_DOWN_KEY_MESSAGE,      _OE_MENU_PREV			},//IRkey up down wtao100413
 	{_IR_UP_KEY_MESSAGE,     _OE_MENU_NEXT},
-	
+
 
     // End flag,not modify there
     {_NONE_KEY_MESSAGE,         _NONE_MSG         },
@@ -155,7 +157,7 @@ SKeyToOsdEvent code tKOSaturationMenu[] =
 	{_IR_MENU_KEY_MESSAGE,		_OE_MENU_NEXT      },
 	{_IR_LEFT_KEY_MESSAGE,      _OE_ADJ_DEC			},
 	{_IR_RIGHT_KEY_MESSAGE,     _OE_ADJ_INC			},
-	
+
 	{_IR_DOWN_KEY_MESSAGE,      _OE_MENU_PREV			},//IRkey up down wtao100413
 	{_IR_UP_KEY_MESSAGE,     _OE_MENU_NEXT},
     // End flag,not modify there
@@ -174,7 +176,7 @@ SKeyToOsdEvent code tKOVolumeMenu[] =
 	{_IR_MENU_KEY_MESSAGE,		_OE_MENU_NEXT       },
 	{_IR_LEFT_KEY_MESSAGE,      _OE_ADJ_DEC			},
 	{_IR_RIGHT_KEY_MESSAGE,     _OE_ADJ_INC			},
-	
+
 	{_IR_DOWN_KEY_MESSAGE,      _OE_MENU_PREV			},//IRkey up down wtao100413
 	{_IR_UP_KEY_MESSAGE,     _OE_MENU_NEXT},
     // End flag,not modify there

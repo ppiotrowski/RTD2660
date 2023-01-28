@@ -64,13 +64,13 @@ bit MDisplayRatioEnable(void)
 }
 
 //---------------------------------------------------------------------------
-bit CTVEnable(void)
+/*bit CTVEnable(void)
 {
     if(stSystemData.InputSource == _SOURCE_VIDEO_TV)
         return 1;
     else
 		return 0;
-}
+}*/
 //---------------------------------------------------------------------------
 
 void OSDSlider(unsigned char row, unsigned char col, unsigned char length, unsigned char value, unsigned char range,
@@ -176,7 +176,9 @@ void DrawManualSearch(void)
     OSD_TITLE_OUT(sManualSearch[GET_LANGUAGE()]);
     Gotoxy(3, 1, BYTE_DISPLAY);
     CShowNumber1(stTvInfo.CurChn, 1);
+		#if(_VIDEO_TV_SUPPORT)
     CShowFreq(iFreq);
+		#endif
 }
 //---------------------------------------------------------------------------
 void DrawTuning(void)
@@ -185,7 +187,9 @@ void DrawTuning(void)
     OSD_TITLE_OUT(sTuning[GET_LANGUAGE()]);
     Gotoxy(3, 1, BYTE_DISPLAY);
     CShowNumber1(stTvInfo.CurChn, 1);
+		#if(_VIDEO_TV_SUPPORT)
     CShowFreq(iFreq);
+		#endif
 }
 //---------------------------------------------------------------------------
 void DrawChannel(void)
@@ -1044,11 +1048,13 @@ void MMainMenuValueAdj(BYTE ucMode)
         case _MI_BRIGHTNESS:          MAdjustBrightness(ucMode);         break;
         case _MI_HUE:                       MAdjustHue(ucMode);                    break;
         case _MI_SATURATION:          MAdjustSaturation(ucMode);         break;
-        case _MI_SYSTEM:                  MAdjustSystem(ucMode);		    break;
+#if(_VIDEO_TV_SUPPORT)
+			case _MI_SYSTEM:                  MAdjustSystem(ucMode);		    break;
         case _MI_AUTOSEARCH:         MAdjustAutoSearch(ucMode);        break;
         case _MI_MANUALSEARCH:     MAdjustManualSearch(ucMode);    break;
         case _MI_TUNING:                  MAdjustTuning(ucMode);               break;
         case _MI_CHANNEL:                MAdjustChannel(ucMode);             break;
+#endif
         case _MI_VOLUME:                  MAdjustVolume(ucMode);             break;
         case _MI_ATUOADJ:                AutoAdjustLeftRight(ucMode);      break;
         case _MI_LANGUAGE:              MAdjustLanguage(ucMode);         break;
@@ -1111,7 +1117,7 @@ void MMainMenuMenuAdj(BYTE ucMode)
         	break;
         case _MI_EXIT:                  //DrawExit();                        	break;
         	ucOsdState = _MI_MENU_NONE;
-        	COsdTimeOut();
+        	//COsdTimeOut();
         	break;
 	default: break;
     }
@@ -1120,7 +1126,7 @@ void MMainMenuMenuAdj(BYTE ucMode)
 }
 
 //---------------------------------------------------------------------------
-void MMainMenuEnterSubMenu(void)
+/*void MMainMenuEnterSubMenu(void)
 {
     // 1. Before Enter SubMenu
     // Insert code to here ...
@@ -1154,7 +1160,7 @@ void MMainMenuEnterSubMenu(void)
     // Insert code to here ...
 
 
-}
+}*/
 //---------------------------------------------------------------------------
 void MMainMenuReturnUpMenu(void)
 {
@@ -1169,12 +1175,12 @@ void MMainMenuReturnUpMenu(void)
     // Insert code to here ...
 }
 //---------------------------------------------------------------------------
-void CShowAutoSerachTotal(BYTE ucSearchTotal)
+/*void CShowAutoSerachTotal(BYTE ucSearchTotal)
 {
 	ucSearchTotal = ucSearchTotal;
 	Gotoxy(3, 1, BYTE_DISPLAY);
     CShowNumber1(ucSearchTotal, 1);
-}
+}*/
 //---------------------------------------------------------------------------
 
 void OutputDisplaySize()

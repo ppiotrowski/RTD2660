@@ -47,7 +47,7 @@ void CMiscSetPinShare(void);
 void CMiscKingmice(void);
 void CMiscIspack(void);
 void CMiscIspDebugProc(void);
-
+void IntProcDdcci(void);
 
 void CDDCCIInitial(void);
 

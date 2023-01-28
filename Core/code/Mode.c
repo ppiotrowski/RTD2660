@@ -1670,7 +1670,7 @@ BYTE CModeGetScaleSetting(void)
 
         CScalerPageSelect(_PAGE2);
         CScalerGetDataPortByte(_P2_HDMI_PSAP_CD, 0x07, 1, pData, _NON_AUTOINC);
-        if(0)//pData[0] == 20) // EricLee for GIEC DVD HDMI full display
+        if(pData[0] == 20) // EricLee for GIEC DVD HDMI full display
         {//1920x1080ix50Hz
             OverScan_HWidth = (BYTE)(stModeInfo.IHWidth/32);    //Horizontal: 96.87%
             OverScan_VHeight= (BYTE)(stModeInfo.IVHeight/32);   //Vertical: 96.87%

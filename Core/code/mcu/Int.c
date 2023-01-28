@@ -10,7 +10,7 @@
 void VBI_GetData();
 #else
 #define	VBI_GetData();
-#endif     
+#endif
 //--------------------------------------------------
 // Timer0 Interrupt (375 us)
 //--------------------------------------------------
@@ -42,22 +42,22 @@ void IntProcTimer0(void) interrupt 1
 	static BYTE data ucTimer0Cnt = 0x00;
 	static BYTE data ucTimerCnt = 10;
 
-	
+
 	EA = 0;
 	TR0 = _ON;
 
-	TL0 = _TIMER0_COUNT_LBYTE;	
+	TL0 = _TIMER0_COUNT_LBYTE;
 	TH0 = _TIMER0_COUNT_HBYTE;
-	
-	
-	if((++ucTimer0Cnt) >= _EVENT_PERIOD) 
+
+
+	if((++ucTimer0Cnt) >= _EVENT_PERIOD)
 	{
 		ucTimer0Cnt = 0;
 		bNotifyTimer0Int = _TRUE;
 		if(ucTimerCnt)
 			ucTimerCnt--;
-			
-		else if(bTimer0Ctrl == _FALSE) 
+
+		else if(bTimer0Ctrl == _FALSE)
 		{
 
 			CTimerDecreaseTimerCnt();
@@ -73,19 +73,20 @@ void IntProcTimer0(void) interrupt 1
 #if(_SLEEP_FUNC)
         if (0xff != ucAutoPowerDownTime && 0x00 != ucAutoPowerDownTime)
         {
-            ucMinuteCount++;
+            ucMinuteCount++;
+
             bShowTimerChg = 1;
             if (ucMinuteCount == _ONE_MINUTE_COUNT)  // 1 minute
             {
                 ucAutoPowerDownTime--;
-                ucMinuteCount = 0; 
+                ucMinuteCount = 0;
             }
         }
 #endif
 #endif
 	}
 	EA = 1;
-#endif	
+#endif
 }
 
 //--------------------------------------------------
@@ -94,7 +95,7 @@ void IntProcTimer0(void) interrupt 1
 //--------------------------------------------------
 void UartRxData(void)
 {
-	if (fUartStart == 0) 
+	if (fUartStart == 0)
 	{
 		pUartData[0] = SBUF;
 		fUartStart = 1;
@@ -119,7 +120,7 @@ void UartRxData(void)
 
 		ucUartRxIndex = 1;
 	}
-	else 
+	else
 	{
 		pUartData[ucUartRxIndex] = SBUF;
 		ucUartRxIndex++;
@@ -135,11 +136,11 @@ void UartRxData(void)
 void IntProcUart(void) interrupt 4
 {
 	ES = 0; // disable uart interrupt.
-	if (TI) 
+	if (TI)
 	{
 		TI = 0;
 	}
-	else if (RI) 
+	else if (RI)
 	{
 		UartRxData();
 		RI = 0;
@@ -150,27 +151,27 @@ void IntProcUart(void) interrupt 4
 
 #endif
 //--------------------------------------------------
-
 #if(_DEBUG_TOOL == _ISP_FOR_RTD3580D_EMCU)
 void IntProcDdcci(void)  interrupt 2
 {
     BYTE tempbuf;
-    
+
     EA=0;
     MCU_I2C_IRQ_CTRL2_FF2A  &= 0xDF; //host write/read enable
+
     if(!bRunCommand)
     {
-        tempbuf = MCU_I2C_STATUS_FF27;   
+        tempbuf = MCU_I2C_STATUS_FF27;
 
         if(tempbuf & 0x08)
-            MCU_I2C_DATA_OUT_FF26 = TxBUF;       
+            MCU_I2C_DATA_OUT_FF26 = TxBUF;
 
-        if(tempbuf & 0x01) 
+        if(tempbuf & 0x01)
             ucDdcciCommandNumber = 0;
 
-        if(tempbuf & 0x02) 
-            ucDdcciCommandNumber =0;
-        		
+        if(tempbuf & 0x02)
+            ucDdcciCommandNumber = 0;
+
         if(tempbuf & 0x04)
         {
             if(ucDdcciCommandNumber==0)
@@ -178,7 +179,8 @@ void IntProcDdcci(void)  interrupt 2
 
             ucDdcciCommandNumber++;
             ucDdcciData[ucDdcciCommandNumber] = MCU_I2C_DATA_IN_FF25;
-            bRunCommand=_TRUE; 
+
+            bRunCommand=_TRUE;
         }
 
         MCU_I2C_STATUS_FF27 = tempbuf & 0xc0;
@@ -189,18 +191,19 @@ void IntProcDdcci(void)  interrupt 2
 
 
 #endif
+
 //--------------------------------------------------
 
 #if(_DEBUG_TOOL == _ISP_FOR_DDCCI && _SUPPORTDDCCI)
 void ReceiveEDIDINT1(void) interrupt 2
 {
 	BYTE tempflag;
-	
+
 	//MCU_I2C_IRQ_CTRL2_FF2A  &= 0xDF; //host write/read enable
 	tempflag = MCU_I2C_STATUS_FF27;
 
 	EA  = 0;
- 	
+
     if(tempflag & DINI)	    // SLAVEB Interrupt
 	{
 		DDCCI_RxInt();
@@ -213,16 +216,16 @@ void ReceiveEDIDINT1(void) interrupt 2
 		MCU_I2C_STATUS_FF27 = tempflag & (~DOUTI);  //Clear DDCRAMA IIC Stop Interrupt detect
     }
 
-    MCU_I2C_STATUS2_FF29 = 0x00; 
+    MCU_I2C_STATUS2_FF29 = 0x00;
     EA  = 1;
 }
 
 //---------------------------------------------------------------------------------------
 
 void DDCCI_RxInt()
-{	
+{
 	unsigned char rxByte = MCU_I2C_DATA_IN_FF25;
-	
+
 	switch(rxStatus)
 	{
 	case DDC2B_CLEAR:
@@ -237,7 +240,7 @@ void DDCCI_RxInt()
 			DDCCI_InitRx();
 			break;
 		}
-		
+
 		// getting the length...
 	case DDC2B_SRCADDRESS:
 		// get the length
@@ -255,14 +258,14 @@ void DDCCI_RxInt()
 			// ...wait for CK
 			//rxStatus++;// = DDC2B_RECBODY;
 			//rxStatus++;// = DDC2B_WAITFORCK;
-			rxStatus = DDC2B_WAITFORCK; 
+			rxStatus = DDC2B_WAITFORCK;
 		}
-		
+
 		else if(ucDDCCI_RxCount > RX_BUFFER_SIZE)
 		{
 			DDCCI_InitRx();
 		}
-		
+
 		break;
 		// ...here we are getting the command...
 	case DDC2B_COMMAND:
@@ -297,7 +300,7 @@ void DDCCI_RxInt()
 	default:
 		DDCCI_InitRx();
 		break;
-		
+
 	}
 }
 //---------------------------------------------------------------------------------------
@@ -311,9 +314,9 @@ void DDCCI_TxInt()
 		ucDDCCI_TxCount = sizeof (ucDDCCI_NullStr);
     }*/
     // ...send out the current byte
-	
+
     MCU_I2C_DATA_OUT_FF26 = *txBufferPtr++;
-	
+
     ucDDCCI_TxCount--;
 
     if (ucDDCCI_TxCount == 0)
@@ -321,7 +324,7 @@ void DDCCI_TxInt()
 		MCU_I2C_IRQ_CTRL2_FF2A  = (MCU_I2C_IRQ_CTRL2_FF2A | _BIT6) & (~_BIT5); //host write/read enable
 		txBufferPtr = &ucDDCCI_NullStr[0];
 		ucDDCCI_TxCount = sizeof (ucDDCCI_NullStr);
-    }    
+    }
 }
 //---------------------------------------------------------------------------------------
 void DDCCI_InitRx(void)
@@ -332,13 +335,13 @@ void DDCCI_InitRx(void)
 	ucDDCCI_RxIndex = 0;
 }
 //---------------------------------------------------------------------------------------
-void DDC2Bi_InitTx (void)
+void DDC2Bi_InitTx(void)
 {
 	// initialize the transmit communication, so that either a valid...
 	// ...or a NULL message is sent on a request from host
 	txBufferPtr = &ucDDCCI_NullStr[0];
 	ucDDCCI_TxCount = sizeof(ucDDCCI_NullStr) - 1;
-	
+
     // a113
     //MCU_I2C_IRQ_CTRL2_FF2A |= 0x20;
 

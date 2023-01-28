@@ -602,7 +602,7 @@ BYTE StrLen(BYTE  *Str)
 }
 
 //----------------------------------------------------------------------------------------------------
-BYTE GetNextLanguage(BYTE CurrIndex)
+/*BYTE GetNextLanguage(BYTE CurrIndex)
 {
      BYTE i;
      WORD iMask = usLANGUAGE_MASK;
@@ -630,9 +630,9 @@ BYTE GetNextLanguage(BYTE CurrIndex)
      }
      return CurrIndex;
 }
-
+*/
 //----------------------------------------------------------------------------------------------------
-BYTE GetPrevLanguage(BYTE CurrIndex)
+/*BYTE GetPrevLanguage(BYTE CurrIndex)
 {
      char i;
      WORD iMask = usLANGUAGE_MASK;
@@ -660,7 +660,7 @@ BYTE GetPrevLanguage(BYTE CurrIndex)
      }
      return CurrIndex;
 }
-
+*/
 //----------------------------------------------------------------------------------------------------
 BYTE CheckLanguage(void)
 {
@@ -816,7 +816,7 @@ void CDoReset(void)
     BYTE ucNR    = GET_NOISEREDUTION();
     BYTE fLR = GET_LR_SWAP();
     BYTE fUD = GET_UD_SWAP();
-
+    BYTE count;
 
     CEepromLoadDefault(0);
 
@@ -865,7 +865,13 @@ void CDoReset(void)
         else if(_GET_INPUT_SOURCE() == _SOURCE_VGA)
         {
             CAutoDoAutoConfig();
-            CAutoDoWhiteBalance();
+            //CAutoDoWhiteBalance();
+            for(count=0;count<3;count++)
+            {
+                stAdcData.AdcGain[count] = 0x80;
+                stAdcData.AdcOffset[count] = 0x80;
+            }
+            CAdjustAdcGainOffset();//jerry0921
 			stModeUserData.FirstAuto = 1;
             CEepromSaveModeData(stModeInfo.ModeCurr);
         }

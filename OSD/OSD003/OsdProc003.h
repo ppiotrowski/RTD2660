@@ -136,7 +136,7 @@ void DbgShowOSDState(void);
 void CShowNote(void);
 void CShowNoSignal(void);
 void CShowNoSupport(void);
-void CShowVisatech(void);
+//void CShowVisatech(void);
 void CChangeSourceAvSv(void);
 void ChangeDisplayMode(void);
 void PanelLRSwap(void);

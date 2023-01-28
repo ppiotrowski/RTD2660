@@ -236,7 +236,7 @@ void CSetVideoColor(void)
     CVideoSetVDCContrast(0x94);	// 0x83//93
     CAccAdjust(GET_DCC_MODE());  // set DCC mode
 
-    if (0)//stDisplayInfo.DHWidth > 700)
+    if (stDisplayInfo.DHWidth > 700)
     {
         CTimerWaitForEvent(_EVENT_DEN_STOP);
         CScalerPageSelect(_PAGE6);

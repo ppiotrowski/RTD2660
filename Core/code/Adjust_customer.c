@@ -25,7 +25,7 @@
 
 void CAdjustAudio(void)
 {
-    if(0)//_GET_INPUT_SOURCE() == _SOURCE_VIDEO_AV || _GET_INPUT_SOURCE() == _SOURCE_VIDEO_SV)
+    if(_GET_INPUT_SOURCE() == _SOURCE_VIDEO_AV || _GET_INPUT_SOURCE() == _SOURCE_VIDEO_SV)
     {
 		pData[0] = (0x78 + stAudioData.Volume - 50);//0x80
 		pData[1] = (0x78 + stAudioData.Volume - 50);//0x80
@@ -55,7 +55,7 @@ void CAdjustBrightness(void)
 		pData[2] = pData[0];//(128 + stConBriData.Brightness - 50);// + stColorTempData.ColorTemp[2];
 	}
     //   EricLee modify for AV/SV gary-scale
-    else if(0)//_GET_INPUT_SOURCE() == _SOURCE_VIDEO_AV || _GET_INPUT_SOURCE() == _SOURCE_VIDEO_SV)
+    else if(_GET_INPUT_SOURCE() == _SOURCE_VIDEO_AV || _GET_INPUT_SOURCE() == _SOURCE_VIDEO_SV)
     {
 		pData[0] = (0x78 + stConBriData.Brightness - 50);//0x80
 		pData[1] = (0x78 + stConBriData.Brightness - 50);//0x80

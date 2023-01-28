@@ -45,7 +45,7 @@ void CUartInit(void)
 	//RCAP2H = 0xFF;	//0FFh , 0D4h	//19200
 
 #if(_ACPOWERON_RS232)
-	CTimerActiveTimerEvent(SEC(10), CSwitchToUart);
+	CTimerActiveTimerEvent(SEC(1), CSwitchToUart);
 #endif
 }
 //----------------------------------------------------------------------------
@@ -53,7 +53,7 @@ void CSwitchToUart(void)
 {
 	BYTE i;
 	bit fTest = 0;
-	
+
 	MCU_PIN_SHARE_CTRL00_FF96 |= 0xF8;
 	ES = 1; // Enable UART's interrupt
 	PS = 1; // Change UART's interrupt to high priority
@@ -66,27 +66,27 @@ void CSwitchToUart(void)
     {
 		bLED1 = fTest;
 		fTest = ~fTest;
-		CTimerDelayXms(20);		
+		CTimerDelayXms(20);
     }
-    
+
 }
 //----------------------------------------------------------------------------
 void CSwitchToI2C(void)
 {
 	BYTE i;
 	bit fTest = 0;
-	
+
 	MCU_PIN_SHARE_CTRL00_FF96 &= 0x07;
 	ES = 0; // Enable UART's interrupt
-	PS = 0; // Change UART's interrupt to high priority	
+	PS = 0; // Change UART's interrupt to high priority
 	fInUartMode = 0;
 
     for(i=0;i<10;i++)
     {
 		bLED2 = fTest;
 		fTest = ~fTest;
-		CTimerDelayXms(20);		
-    }	
+		CTimerDelayXms(20);
+    }
 }
 //----------------------------------------------------------------------------
 void DebugPrintf(const BYTE code* pstr,BYTE value)
@@ -119,7 +119,7 @@ void DebugPrintf(const BYTE code* pstr,BYTE value)
 					i++;
 					p++;
 					CUartPutCharToScr(value);
-					break;	
+					break;
 				default:
 					CUartPutCharToScr(*p);
 					break;
@@ -138,26 +138,26 @@ void CUartPutToScr(const BYTE ch,const BYTE mode)
 	BYTE NO1[3];
 	BYTE i,time;
 
-	if(mode == 1) 
+	if(mode == 1)
 	{	//dec
 		NO1[2] = ch / 100;
 		NO1[1] = (ch % 100) / 10;
 		NO1[0] = (ch % 100) % 10;
-		
+
 		if (NO1[2])					time = 3;
 		else if (NO1[1])			time = 2;
 		else						time = 1;
 
-		for (i = 0; i < time; i++) 
+		for (i = 0; i < time; i++)
 		{
 			CUartPutCharToScr(NO1[time - i - 1] + '0');
 		}
 	}
-	else if (mode == 2) 
+	else if (mode == 2)
 	{	//hex
 		NO1[1] = (ch & 0x0F);
 		NO1[0] = ((ch >> 4) & 0x0F);
-		for (i = 0; i < 2; i++) 
+		for (i = 0; i < 2; i++)
 		{
 
 			if (NO1[i] > 9)
@@ -177,7 +177,7 @@ void CUartPutCharToScr(BYTE ch)
 	TI = 0;
 	SBUF = ch; 			// transfer UART
 	while (!TI);		// wait buffer completing.
-	
+
 	ES = 1;
 }
 //----------------------------------------------------------------------------
@@ -186,21 +186,21 @@ void CUartPutCharToScr(BYTE ch)
 void CUartHandler(void)
 {
 	do
-	{		
+	{
 		if (!fUartRxCmdSuccess)
 			continue;
 
 		fUartRxCmdSuccess = 0;
 
 		switch (pUartData[0])
-		{	
+		{
 			case UartCMD_DebugModeExit:
 				UartCMDDebugModeExit();
 				break;
 			case UartCMD_DebugModeEnter:
 				UartCMDDebugModeEnter();
 				break;
-			
+
 			case UartCMD_CScalerRead:
 				UartCMDScalerRead();
 				break;

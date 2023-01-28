@@ -32,7 +32,7 @@ bit CVideoEnable(void);
 bit CVideoNTSCEnable(void);
 bit CVgaEnable(void);
 bit MDisplayRatioEnable(void);
-bit CTVEnable(void);
+//bit CTVEnable(void);
 
 
 void OSDSlider(unsigned char row, unsigned char col, unsigned char length, unsigned char value, unsigned char range,
@@ -67,12 +67,14 @@ void MAdjustBrightness(BYTE ucMode);
 void MAdjustHue(BYTE ucMode);
 void MAdjustSaturation(BYTE ucMode);
 
+#if(_VIDEO_TV_SUPPORT)
 void MAdjustSystem(BYTE ucMode);
 void CShowFreq(WORD iFreqN);
 void MAdjustAutoSearch(BYTE ucMode);
 void MAdjustManualSearch(BYTE ucMode);
 void MAdjustTuning(BYTE ucMode);
 void MAdjustChannel(BYTE ucMode);
+#endif
 void MAdjustVolume(BYTE ucMode);
 void MAdjustSource(BYTE ucMode);
 void MAdjustFM(BYTE LR);
@@ -83,7 +85,7 @@ void MAdjustReset(BYTE ucMode);
 void DrawMainMenu(void);
 void LoadLanguageFont(void);
 void MAdjustLanguage(BYTE ucMode);
-void CShowAutoSerachTotal(BYTE ucSearchTotal);
+//void CShowAutoSerachTotal(BYTE ucSearchTotal);
 void CShowAutoSearchSliderInOSD(WORD ucCurrentValue);
 bit CKeyStopAutoSearch(void);
 // Extent function define
@@ -94,7 +96,7 @@ extern void MMenuNoneEnterSubMenu(void);
 extern void MMainMenuProc(void);
 extern void MMainMenuValueAdj(BYTE ucMode);
 extern void MMainMenuMenuAdj(BYTE ucMode);
-extern void MMainMenuEnterSubMenu(void);
+//extern void MMainMenuEnterSubMenu(void);
 extern void MMainMenuReturnUpMenu(void);
 
 

@@ -316,8 +316,8 @@ void InitBurnIn();
 void BurnInRun();
 void OutputHFreqRate();
 
-BYTE GetNextLanguage(BYTE CurrIndex);
-BYTE GetPrevLanguage(BYTE CurrIndex);
+//BYTE GetNextLanguage(BYTE CurrIndex);
+//BYTE GetPrevLanguage(BYTE CurrIndex);
 BYTE CheckLanguage();
 BYTE FirstLanguage();
 

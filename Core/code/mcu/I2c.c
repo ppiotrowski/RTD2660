@@ -99,7 +99,7 @@ BYTE CI2cStartFM(BYTE ucDeviceAddr)
     Delay5us();
     CLRI2CSCLFM();
 	Delay5us();
-	
+
     return CI2cSendByteFM(ucDeviceAddr);
 }
 
@@ -178,7 +178,7 @@ BYTE CI2cSendByte(BYTE ucValue)
             SETI2CSDA();
         else
             CLRI2CSDA();
-            
+
         SETI2CSCL();
         Delay5us();
         CLRI2CSCL();
@@ -225,10 +225,10 @@ BYTE CI2cSendByteFM(BYTE ucValue)
     {
         return _I2C_OK;
     }
+/*      Delay5us();
 		Delay5us();
 		Delay5us();
-		Delay5us();
-		Delay5us();
+		Delay5us();*/
 }
 
 BYTE CI2cGetByte(void)
@@ -256,14 +256,14 @@ bit CI2cWriteStart(BYTE ucDeviceAddr, BYTE ucStartAddr)
     while(CI2cStart(control) != _I2C_OK)
     {
         timeoutcnt--;
-        
+
         if(!timeoutcnt)
             return _FAIL;
 
     }
     if(CI2cSendByte(ucStartAddr) != _I2C_OK)
         return _FAIL;
-        
+
     return _SUCCESS;
 }
 
@@ -357,17 +357,17 @@ bit CI2cWriteFM( BYTE ucStartAddr, BYTE ucdata1, BYTE ucdata2)
 {
     BYTE timeoutcnt, control;
     timeoutcnt  = _I2C_TIMEOUT_LIMIT;
-    control = ((ucStartAddr)<<1)|0x80;	
+    control = ((ucStartAddr)<<1)|0x80;
     control = control | _I2C_WR;
     while(CI2cStartFM(control) != _I2C_OK)
     {
-        timeoutcnt--;      
+        timeoutcnt--;
         if(!timeoutcnt)
             return _FAIL;
     }
 	CI2cSendByteFM(ucdata1);
-	CI2cSendByteFM(ucdata2);	
-	CI2cStopFM();   
+	CI2cSendByteFM(ucdata2);
+	CI2cStopFM();
     return _SUCCESS;
 }
 
@@ -380,7 +380,7 @@ void AS6300_Set_Freq(WORD frq)
 	temp = frq+2;
 	rfpll_sb  = temp % 15;
 	rfpll_pb = (temp - rfpll_sb) / 15 - 1;
-	
+
 	temp1 = (rfpll_pb >> 1);
 	temp1 |= (rfpll_sb<<7);
 	temp2 = (rfpll_pb<<7)|0x20;
@@ -392,7 +392,7 @@ void AS6300_Set_Freq(WORD frq)
 
 
 //==============================================================================
-//idcode: ¸ß8Î»ÊÇµÍ8Î»µÄ²¹Âë//wtao100415
+//idcode: ï¿½ï¿½8Î»ï¿½Çµï¿½8Î»ï¿½Ä²ï¿½ï¿½ï¿½//wtao100415
 #ifdef IRSEND_ENABLE
 void IR_Trans_Command(WORD customcode,WORD idcode)
 {
@@ -420,9 +420,9 @@ void IR_Trans_Command(WORD customcode,WORD idcode)
 		{
 			IR_PIN_H;
 			Delay_us(88);
-		}		
+		}
 		customcode >>= 1;
-	} 
+	}
 
 	for(index = 0;index<16;index++)
 	{
@@ -438,7 +438,7 @@ void IR_Trans_Command(WORD customcode,WORD idcode)
 			IR_PIN_H;
 			Delay_us(88);
 		}
-		idcode >>= 1;		
+		idcode >>= 1;
 	}
 
 	IR_PIN_L;
@@ -473,25 +473,25 @@ void CAlcInit(void)
 	//Zero Detection Control Bit8
 	//0: Turn Off
 	//1: Turn On
-	
+
 	//Output Clamping Control Bit5
 	//0: Internal Control
-	//1: External OPL Pin Control	
+	//1: External OPL Pin Control
 
-	
+
 	BYTE ucCtrl = (1 << 8) | (0 << 5);
 	CAlcWrite(0x01,g_ucAlcCtrl0);
 	CAlcWrite(0x02,ucCtrl);
 
 	CAlcSetMuteOn();
-	CAlcSetPowerOff();	
+	CAlcSetPowerOff();
 }
 //==============================================================================
 WORD CAlcRead(BYTE usAddr)
 {
 	WORD usData;
 	CI2cRead(_ALC_SLAVE, usAddr, 2, pData);
-	
+
 	usData = ((WORD)pData[0] << 8) | pData[1];
 	return usData;
 }
@@ -500,8 +500,8 @@ void CAlcWrite(BYTE usAddr,WORD usData)
 {
 	pData[0] = (usData >> 8) & 0xff;
 	pData[1] = usData & 0xff;
-	
-	CI2cWrite(_ALC_SLAVE, usAddr, 2, pData);	
+
+	CI2cWrite(_ALC_SLAVE, usAddr, 2, pData);
 }
 //==============================================================================
 void CAlcSetMuteOn(void)
@@ -525,10 +525,10 @@ void CAlcSetMuteOff(void)
 
 	while(usTimeOut --)
 	{
-		bMute = _MUTE_OFF;	
+		bMute = _MUTE_OFF;
 		usRD = CAlcRead(0x00);
 		if((usRD & _BIT8) == 0x00)
-			return;		
+			return;
 	}
 }
 //==============================================================================
@@ -539,10 +539,10 @@ void CAlcSetPowerOn(void)
 
 	while(usTimeOut --)
 	{
-		bALCPower = _ALC_POWER_ON;	
+		bALCPower = _ALC_POWER_ON;
 		usRD = CAlcRead(0x00);
 		if(usRD & _BIT9)
-			return;		
+			return;
 	}
 }
 //==============================================================================
@@ -553,10 +553,10 @@ void CAlcSetPowerOff(void)
 
 	while(usTimeOut --)
 	{
-		bALCPower = _ALC_POWER_ON;	
+		bALCPower = _ALC_POWER_ON;
 		usRD = CAlcRead(0x00);
 		if((usRD & _BIT9) == 0x00)
-			return;		
+			return;
 	}
 }
 //==============================================================================

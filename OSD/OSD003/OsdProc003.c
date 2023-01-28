@@ -375,7 +375,7 @@ void COsdEventMsgProc(void)
         case _SHOW_NOSUPPORT_MSG:
             ucOsdState = _MI_MENU_NONE;
             CShowNoSupport();
-            CTimerCancelTimerEvent(COsdTimeOut);
+            //CTimerCancelTimerEvent(COsdTimeOut);
             break;
         case _SHOW_NOSIGNAL_MSG:
         case _SHOW_NOCABLE_MSG:
@@ -390,7 +390,7 @@ void COsdEventMsgProc(void)
 			CShowNoSignal();
 	  #endif
 #endif
-			CTimerCancelTimerEvent(COsdTimeOut);
+			//CTimerCancelTimerEvent(COsdTimeOut);
             break;
 
         case _SAVE_EE_MODEUSERDATA_MSG:
@@ -873,7 +873,7 @@ void CShowTimerMode()
 		Gotoxy(0,0,BYTE_DISPLAY);
 		Textout(sOff[GET_LANGUAGE()]);
 	}
-	CTimerReactiveTimerEvent(SEC(5), COsdTimeOut);
+	//CTimerReactiveTimerEvent(SEC(5), COsdTimeOut);
     COsdFxEnableOsd();
     bOSDTimeOut = 0;
 }
@@ -915,7 +915,7 @@ void CShowTimer(void) small
     else
        CShowNumber1(ucCurrentSec, 2);
     //OutputChar(0x01);
-   	CTimerCancelTimerEvent(COsdTimeOut);
+   	//CTimerCancelTimerEvent(COsdTimeOut);
 }
 //---------------------------------------------------------------------------
 
@@ -970,7 +970,7 @@ BYTE CFoundKeyMsgToOsdEvent(SKeyToOsdEvent *tMsgTable)
 
          i++;
      }
-     return 1;
+     //return 1;
 }
 //---------------------------------------------------------------------------
 
@@ -1032,7 +1032,7 @@ void CShowNoSupport(void)
     COsdFxEnableOsd();
 }
 //---------------------------------------------------------------------------
-
+/*
 void CShowVisatech(void)
 {
     InitOsdFrame();
@@ -1044,7 +1044,7 @@ void CShowVisatech(void)
 
     COsdFxEnableOsd();
  }
-
+*/
 //---------------------------------------------------------------------------
 void CShowNote(void)
 {
@@ -1480,7 +1480,7 @@ void CChangePictureMode(void)
     CPowerPanelOn();
 
 	// set osd timeout
-    CTimerReactiveTimerEvent(SEC(5), COsdTimeOut);
+    //CTimerReactiveTimerEvent(SEC(5), COsdTimeOut);
 
 
     // change contrast brightness value

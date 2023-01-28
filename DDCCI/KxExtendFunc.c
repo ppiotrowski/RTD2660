@@ -4,7 +4,7 @@
 
 
 //------------------------------------------------------------------------
-
+#if(_DEBUG_TOOL == _ISP_FOR_DDCCI && _SUPPORTDDCCI)
 void KxEFGetRealAddress(void)				// data count 8
 {
 	ucDDCCI_TxBuf[3] = ((DWORD)_EXTFUNC_REAL_BEGIN_ADDRESS >> 24);
@@ -17,7 +17,7 @@ void KxEFGetRealAddress(void)				// data count 8
 	ucDDCCI_TxBuf[9] = ((DWORD)_EXTFUNC_REAL_END_ADDRESS >> 8);
 	ucDDCCI_TxBuf[10] = ((DWORD)_EXTFUNC_REAL_END_ADDRESS);
 
-	
+
 }
 //------------------------------------------------------------------------
 void KxEFGetLogoInfo(void)			// data count 3
@@ -25,7 +25,7 @@ void KxEFGetLogoInfo(void)			// data count 3
 	ucDDCCI_TxBuf[3] = tEFLogoInfo.Support;
 	ucDDCCI_TxBuf[4] = (tEFLogoInfo.Offset >> 8);
 	ucDDCCI_TxBuf[5] = (tEFLogoInfo.Offset);
-	
+
 }
 //------------------------------------------------------------------------
 void KxEFGetEdidGroupCnt(void)			// data count 1
@@ -43,8 +43,8 @@ void KxEFGetEdidInfo(BYTE ucIndex)			// data count 20
 	MemoryCpy(&ucDDCCI_TxBuf[5],tEFEdids[ucIndex].Name,16);
 
 	ucDDCCI_TxBuf[22] = tEFEdids[ucIndex].Type;
-	
-	
+
+
 }
 //------------------------------------------------------------------------
 void KxEFGetIRInfo(void)			// data count 4
@@ -64,13 +64,13 @@ void KxEFGetIRKeyInfo(BYTE ucIndex)			// data count 17
 	MemoryCpy(&ucDDCCI_TxBuf[3],tEFIRKeys[ucIndex].Name,16);
 
 	ucDDCCI_TxBuf[19] = tEFIRKeys[ucIndex].KeyMessage;
-	
+
 }
 //------------------------------------------------------------------------
 void KxEFGetIRValue(BYTE *p)
 {
 	BYTE ucIrdaStatus = MCU_IR_STATUS_FF89;
-	
+
 	if (ucIrdaStatus & (_BIT4 | _BIT3))
 	{
 		*p++ = MCU_IR_DATA2_FF8C;
@@ -84,7 +84,7 @@ void KxEFGetIRValue(BYTE *p)
 		*p++ = 0x00;
 		*p++ = 0x00;
 		*p++ = 0x00;
-		
+
 	}
 }
 //------------------------------------------------------------------------
@@ -104,7 +104,7 @@ void KxEFGetOneSDKeyInfo(BYTE ucIndex) // data count 17
 	MemoryCpy(&ucDDCCI_TxBuf[3],tEFSDKey[ucIndex].Name,16);
 
 	ucDDCCI_TxBuf[19] = tEFSDKey[ucIndex].KeyMessage;
-	
+
 }
 //------------------------------------------------------------------------
 void KxEFGetSDKeyMask(void)
@@ -134,8 +134,8 @@ void KxEFGetADKeyInfo(BYTE ucIndex)			// data count 17
 //------------------------------------------------------------------------
 void KxEFGetADCValue(BYTE *p)
 {
-	MCU_ADC_ACONTROL_FF08 = 0x82;			//start adc convert(STRT_ADC_ACKT=1) 
-	MCU_ADC_BCONTROL_FF0E = 0x82;			//start adc convert(STRT_ADC_ACKT=1) 
+	MCU_ADC_ACONTROL_FF08 = 0x82;			//start adc convert(STRT_ADC_ACKT=1)
+	MCU_ADC_BCONTROL_FF0E = 0x82;			//start adc convert(STRT_ADC_ACKT=1)
 
 	while(MCU_ADC_ACONTROL_FF08 & 0x80)
 	{
@@ -143,22 +143,22 @@ void KxEFGetADCValue(BYTE *p)
 	}
 
 
-	*p++ = MCU_ADC_A0_CONVERT_RESULT_FF09 >> 2;	
-	*p++ = MCU_ADC_A1_CONVERT_RESULT_FF0A >> 2;	
-	*p++ = MCU_ADC_A2_CONVERT_RESULT_FF0B >> 2;	
-	*p++ = MCU_ADC_A3_CONVERT_RESULT_FF0C >> 2;	
-	*p++ = MCU_ADC_A4_CONVERT_RESULT_FF0D >> 2;	
+	*p++ = MCU_ADC_A0_CONVERT_RESULT_FF09 >> 2;
+	*p++ = MCU_ADC_A1_CONVERT_RESULT_FF0A >> 2;
+	*p++ = MCU_ADC_A2_CONVERT_RESULT_FF0B >> 2;
+	*p++ = MCU_ADC_A3_CONVERT_RESULT_FF0C >> 2;
+	*p++ = MCU_ADC_A4_CONVERT_RESULT_FF0D >> 2;
 
 
-	//Ö»È¡¸ß 8 Î»£¬µÍ¶þÎ»ºöÂÔ
+	//Ö»È¡ï¿½ï¿½ 8 Î»ï¿½ï¿½ï¿½Í¶ï¿½Î»ï¿½ï¿½ï¿½ï¿½
 	while(MCU_ADC_BCONTROL_FF0E & 0x80)
 	{
 		_nop_();
 	}
 
-	*p++ = ADC_B0H_convert_result_FF15;			
-	*p++ = ADC_B1H_convert_result_FF16;	
-	*p++ = ADC_B2H_convert_result_FF17;	
+	*p++ = ADC_B0H_convert_result_FF15;
+	*p++ = ADC_B1H_convert_result_FF16;
+	*p++ = ADC_B2H_convert_result_FF17;
 }
 //------------------------------------------------------------------------
 void KxEFPanelInfo(void)			// data count 3
@@ -186,7 +186,7 @@ void KxEFGetOtherFuncInfo(BYTE ucIndex)			// data count 20
 	ucDDCCI_TxBuf[22] = tEFOtherFunc[ucIndex].DefaultValue;
 }
 //------------------------------------------------------------------------
-
+#endif
 
 
 
@@ -196,15 +196,15 @@ void KxEFGetOtherFuncInfo(BYTE ucIndex)			// data count 20
 BYTE ScanExtendIR(void)
 {
 
-	BYTE ucIRCode; 
+	BYTE ucIRCode;
     BYTE ucIRMessage = _NONE_KEY_MESSAGE;
     BYTE code *pIRTable = _EF_IR_KEYMSG_ADDRESS;
 
 	if((pIRTable[0] == ucIrQueue[0]) && (pIRTable[1] == ucIrQueue[1]))
 	{
 		pIRTable += 2;
-		
-		if(ucIrQueue[2] == (~ucIrQueue[3])) 
+
+		if(ucIrQueue[2] == (~ucIrQueue[3]))
 		{
 			ucIRCode = ucIrQueue[2];
 
@@ -228,8 +228,8 @@ BYTE ScanExtendIR(void)
 
 			ucRepKeyCount = 0;
 		}
-	} 
-	
+	}
+
 	return ucIRMessage;
 }
 //------------------------------------------------------------------------
@@ -237,10 +237,10 @@ void GetExtendEnable(void)
 {
 	BYTE code *p = _EF_IR_ENABLE_ADDRESS;
 
-	// iR 
+	// iR
        if(*p == 0xFF)
 		g_bUsePresetIR = 1;
-	else 
+	else
 		g_bUsePresetIR = 0;
 
     // sdkey
@@ -249,8 +249,8 @@ void GetExtendEnable(void)
 	if(*p == 0xFF)
 		g_bUsePresetKey = 1;
 	else g_bUsePresetKey = 0;
-	
-    
+
+
     // logo
 	p = _EF_LOGO_ENABLE_ADDRESS;
 
@@ -258,8 +258,8 @@ void GetExtendEnable(void)
 		g_fUserPresetLogo = 1;
 	else
 		g_fUserPresetLogo = 0;
-    
-	
+
+
 }
 //------------------------------------------------------------------------
 
@@ -267,14 +267,14 @@ BYTE CIOMaskToKeyMaskExt(BYTE ucIOMask)
 {
 	BYTE code *p = _EF_SDKEY_KEYMSG_ADDRESS;
 	BYTE ucKeyState = _NONE_KEY_MASK;
-	
+
 	while(1)
 	{
 		if(p[0] == 0xFF && p[1] == 0xFF)
 			break;
 
 		if(ucIOMask & p[1])
-			ucKeyState |= p[0];	
+			ucKeyState |= p[0];
 
 		p += 2;
 	}

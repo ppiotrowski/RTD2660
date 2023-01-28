@@ -31,7 +31,7 @@
 // Debug Tool
 //--------------------------------------------------
 //_NONE,_ISP_FOR_RTD3580D_EMCU,_ISP_FOR_DDCCI
-#define _DEBUG_TOOL                            _ISP_FOR_RTD3580D_EMCU // _ISP_FOR_DDCCI
+#define _DEBUG_TOOL                            _ISP_FOR_RTD3580D_EMCU
 
 #define _RS232_EN					 _OFF
 
